@@ -17,7 +17,9 @@ const SearchBar = ({ onPress, onChange, searchActive, onPressReset }) => {
 
                 {/* Input field */}
                 <TextInput
-                    style={styles.input}
+                    style={searchActive
+                        ? styles.input__clicked
+                        : styles.input__unclicked}
                     placeholder="Search the game's title"
                     onChange={onChange}
                     onFocus={onChange}
@@ -27,11 +29,11 @@ const SearchBar = ({ onPress, onChange, searchActive, onPressReset }) => {
                     name="search"
                     size={20}
                     color="black"
-                    style={{ marginLeft: 1 }}
+                    style={{ marginLeft: 10, marginRight: 10, }}
                     onPress={onPress}
                 />}
 
-                {searchActive && <Entypo name="cross" size={20} color="black" style={{ padding: 1 }} onPress={onPressReset} />}
+                {searchActive && <Entypo name="cross" size={20} color="black" style={{ padding: 1, marginLeft: 10, marginRight: 10, }} onPress={onPressReset} />}
             </View>
 
         </View>
@@ -46,7 +48,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "row",
-        width: "50%",
+        width: "80%",
     },
     searchBar__unclicked: {
         padding: 10,
@@ -69,10 +71,18 @@ const styles = StyleSheet.create({
         borderColor: "yellow",
         borderWidth: 2,
     },
-    input: {
+    input__unclicked: {
         fontSize: 20,
         // marginLeft: 10,
         width: "100%",
+        backgroundColor: "white",
+        borderRadius: 15,
+        padding: 10,
+    },
+    input__clicked: {
+        fontSize: 20,
+        // marginLeft: 10,
+        width: "70%",
         backgroundColor: "white",
         borderRadius: 15,
         padding: 10,

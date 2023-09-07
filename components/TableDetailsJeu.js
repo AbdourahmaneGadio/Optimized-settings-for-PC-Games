@@ -1,7 +1,7 @@
 import { StyleSheet, View } from 'react-native';
-import { Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-reanimated-table';
+import { Table, TableWrapper, Col } from 'react-native-reanimated-table';
 
-export default function TableDetailsJeu() {
+export default function TableDetailsJeu({gameSelected}) {
 
     const testTableData = {
         tableTitle: ['Jeu', 'Textures'],
