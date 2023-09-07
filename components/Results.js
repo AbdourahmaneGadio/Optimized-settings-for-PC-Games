@@ -1,22 +1,29 @@
 import React from 'react';
 import { StyleSheet,View, Text, Image } from 'react-native';
 
-const Results = ({gameResults, onPress}) => {
+const Results = ({gameResults, onPointerEnter}) => {
 
     return (
         <View>
             <Text>Results : </Text>
-            {gameResults && gameResults.map && gameResults.map((actualGame) => {
+            {gameResults && gameResults.map && gameResults.map((actualGame, index) => {
                 return (
-                    <View style={styles.container} onPress={onPress}>
-                        <View style={styles.containerTitle}>
-                            <Text>Jeu 1</Text>
-                        </View>
-                        <View style={styles.gameImageContainer}>
-                            <Image source={''} style={styles.imageCover} />
-                        </View>
-
+                  <View
+                    style={styles.container}
+                    onPointerEnter={onPointerEnter}
+                    key={index}
+                    id={actualGame.slug}
+                  >
+                    <View style={styles.containerTitle}>
+                      <Text>{actualGame.name}</Text>
                     </View>
+                    <View style={styles.gameImageContainer}>
+                      <Image
+                        source={actualGame.background_image}
+                        style={styles.imageCover}
+                      />
+                    </View>
+                  </View>
                 );
             })}
         </View>
