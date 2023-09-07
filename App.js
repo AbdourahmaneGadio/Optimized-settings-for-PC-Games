@@ -29,7 +29,6 @@ export default function App() {
       .then((resp) => resp.json())
       .then(({ results }) => {
         results === undefined ? setGameResults([]) : setGameResults(results);
-        console.log(results);
       })
       .catch(() => {
         setGameResults("error");
@@ -39,6 +38,7 @@ export default function App() {
 
   // Si l'on choisit parmi les résultats
   const handleGameSelected = (e) => {
+    setGameSelected();
     setSearchActive(false);
     setGameResults([]);
 
@@ -58,6 +58,7 @@ export default function App() {
     setSearchActive(false);
     setSearchTerm("");
     setGameResults([]);
+    setGameSelected();
   };
 
   return (
@@ -80,15 +81,13 @@ export default function App() {
       gameResults == "error" ? (
         <Text>Something wrong happened, try later.</Text>
       ) : // Si on a des résultats
-      gameResults.length > 0 ? (
+      gameResults.length > 0 &&
         // Sinon, on affiche les résultats trouvés
         <Results
           gameResults={gameResults}
           onPointerEnter={handleGameSelected}
         />
-      ) : (
-        <Text>No games found</Text>
-      )}
+}
 
       {/* Les détails du jeu choisi parmi les résultats */}
       {gameSelected && <TableDetailsJeu gameSelected={gameSelected} />}
