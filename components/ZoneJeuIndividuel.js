@@ -1,14 +1,14 @@
 import { RAWG_API_KEY } from "@env";
+import { AntDesign } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import {
+  ImageBackground,
   Pressable,
   StyleSheet,
   Text,
   View,
-  ImageBackground,
 } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
 
 export default function ZoneJeuIndividuel({ actualGame, onPress }) {
   const myButton = (
