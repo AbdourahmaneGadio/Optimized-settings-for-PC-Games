@@ -3,9 +3,11 @@ import { StyleSheet, View } from "react-native";
 import { Table, TableWrapper, Col } from "react-native-reanimated-table";
 
 export default function TableDetailsJeu({ gameSelected }) {
-  const [gameData, setGameData] = useState([]);
-  const [titlesGameData, setTitlesGameData] = useState([]);
-  const [detailsGameData, setDetailsGameData] = useState([]);
+  const [dataLoaded, setDataLoaded] = useState({
+    gameData: [],
+    settingsName: [],
+    settingsOptions: [],
+  });
 
   // Get all the settings name (ex: Texture, Ray-Tracing, ...)
   function getKeysFromJSON(gamesData) {
@@ -29,34 +31,34 @@ export default function TableDetailsJeu({ gameSelected }) {
   }
 
   useEffect(() => {
-    async function fetchData() {
-      fetch(
-        `https://raw.githubusercontent.com/AbdourahmaneGadio/Optimized-settings-for-PC-Games/master/gamesData/${gameSelected}.json`
-      )
-        .then((resp) => resp.json())
-        .then((data) => {
-          const gameDataFetch = data !== undefined ? data : [];
-          setGameData(gameDataFetch);
+    
+    const handleFetch = async () => {
+
+      try {
+        let response = await fetch(
+          `https://raw.githubusercontent.com/AbdourahmaneGadio/Optimized-settings-for-PC-Games/master/gamesData/${gameSelected}.json`
+        );
+
+        let data = await response.json();
+
+        const gameDataFetch = (await data) !== undefined ? data : [];
+
+        const keysJSON = getKeysFromJSON(gameDataFetch);
+
+        const valuesJSON = getValuesFromJSON(gameDataFetch);
+
+        setDataLoaded({
+          gameData: gameDataFetch,
+          settingsName: keysJSON,
+          settingsOptions: valuesJSON,
         });
-    }
-    fetchData();
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-  }, [setGameData]);
-
-
- useEffect(() => {
-   async function setGamesTableData() {
-     const keysJSON = getKeysFromJSON(gameData);
-     setTitlesGameData(keysJSON);
-
-     const valuesJSON = getValuesFromJSON(gameData);
-     setDetailsGameData(valuesJSON);
-   }
-
-   setGamesTableData();
- }, [setTitlesGameData]);
-
-  console.log(detailsGameData);
+    handleFetch();
+  }, []);
 
   return (
     <View>
@@ -64,14 +66,14 @@ export default function TableDetailsJeu({ gameSelected }) {
         <TableWrapper style={{ width: 500 }}>
           <TableWrapper style={{ flexDirection: "row" }}>
             <Col
-              data={["test", "test"]}
+              data={dataLoaded.settingsName}
               style={styles.title}
               heightArr={[30, 30, 30, 30]}
               textStyle={styles.titleText}
             />
 
             <Col
-              data={["test", "test"]}
+              data={dataLoaded.settingsOptions}
               style={styles.title}
               heightArr={[30, 30, 30, 30]}
               textStyle={styles.titleText}

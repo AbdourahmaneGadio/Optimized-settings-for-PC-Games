@@ -19,7 +19,7 @@ export default function App() {
 
     // On rajoute des tirets dans le terme recherché pour la recherche avec l'api
     //  Ex: Psychonauts 2 devient psychonauts-2
-    let termeFinal = searchTerm.split(" ").join("-").toLowerCase();
+    let termeFinal = searchTerm.split(" ").join("-").toLowerCase()
 
     // Par défaut, on considère qu'on a aucun résultat
     setGameResults([]);
@@ -51,6 +51,7 @@ export default function App() {
   const handleKeyboardEntry = (e) => {
     setSearchActive(true);
     setSearchTerm(e.target.value); // On enregistre le terme recherché
+    setGameSelected();
   };
 
   // Si on veut remettre à zéro le nom du jeu
