@@ -1494,7 +1494,7 @@
 
 "@expo/webpack-config@^19.0.0":
   version "19.0.0"
-  resolved "https://registry.npmjs.org/@expo/webpack-config/-/webpack-config-19.0.0.tgz"
+  resolved "https://registry.yarnpkg.com/@expo/webpack-config/-/webpack-config-19.0.0.tgz#d8ce69bdb9a99089bb0672a7dc01dc96bebad390"
   integrity sha512-mX28BNyf4Cs0+4L44QQyhy5QMVfsYhOdB9Fpf3rp982KTKUsy01UFJ0irGI1jQ68jXrQn5/WU4u1pvN6DDao5Q==
   dependencies:
     "@babel/core" "^7.20.2"
