@@ -1,10 +1,10 @@
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
+import LoadingIcon from "./components/LoadingIcon";
 import Results from "./components/Results";
 import SearchBar from "./components/SearchBar";
 import TableDetailsJeu from "./components/TableDetailsJeu";
-import LoadingIcon from "./components/LoadingIcon";
 
 import { RAWG_API_KEY } from "@env";
 
@@ -15,21 +15,33 @@ export default function App() {
   const [gameResults, setGameResults] = useState([]);
   const [gameSelected, setGameSelected] = useState();
 
-  // On recherche le jeu avec l'API de RAWG
+  {
+    /* On recherche le jeu avec l'API de RAWG */
+  }
   const handleSearch = async (e) => {
     e.preventDefault();
 
     setIsLoading(true);
 
-    // On rajoute des tirets dans le terme recherché pour la recherche avec l'api
-    //  Ex: Psychonauts 2 devient psychonauts-2
+    {
+      /* On rajoute des tirets dans le terme recherché pour la recherche avec l'api */
+    }
+    {
+      /*  Ex: Psychonauts 2 devient psychonauts-2 */
+    }
     let termeFinal = searchTerm.split(" ").join("-").toLowerCase();
 
-    // Par défaut, on considère qu'on a aucun résultat
+    {
+      /* Par défaut, on considère qu'on a aucun résultat */
+    }
     setGameResults([]);
 
-    // On récupère les résultats
-    await fetch(`https://rawg.io/api/games?search=${termeFinal}&key=${RAWG_API_KEY}`)
+    {
+      /* On récupère les résultats */
+    }
+    await fetch(
+      `https://rawg.io/api/games?search=${termeFinal}&key=${RAWG_API_KEY}`
+    )
       .then((resp) => resp.json())
       .then(({ results }) => {
         results === undefined ? setGameResults([]) : setGameResults(results);
@@ -41,8 +53,11 @@ export default function App() {
     setIsLoading(false);
   };
 
-  // Si l'on choisit parmi les résultats
+  {
+    /* Si l'on choisit parmi les résultats */
+  }
   const handleGameSelected = (e) => {
+
     setGameSelected();
     setSearchActive(false);
     setGameResults([]);
@@ -52,14 +67,21 @@ export default function App() {
     setGameSelected(gameSelectedName);
   };
 
-  // Dès que l'on tape sur la barre de recherche
+  {
+    /* Dès que l'on tape sur la barre de recherche */
+  }
   const handleKeyboardEntry = (e) => {
     setSearchActive(true);
-    setSearchTerm(e.target.value); // On enregistre le terme recherché
+    setSearchTerm(e.target.value);
+    {
+      /* On enregistre le terme recherché */
+    }
     setGameSelected();
   };
 
-  // Si on veut remettre à zéro le nom du jeu
+  {
+    /* Si on veut remettre à zéro le nom du jeu */
+  }
   const resetSearch = () => {
     setSearchActive(false);
     setSearchTerm("");
@@ -83,18 +105,15 @@ export default function App() {
       {/* Résultats */}
       {/* Chargement */}
       {isLoading && searchActive && <LoadingIcon />}
-      {searchActive &&
-      gameResults &&
-      // Si erreur lors du fetch
-      gameResults == "error" ? (
+
+      {/* Si erreur lors du fetch */}
+      {searchActive && gameResults && gameResults == "error" ? (
         <Text>Something wrong happened, try later.</Text>
       ) : (
-        // Si on a des résultats
         gameResults.length > 0 && (
-          // Sinon, on affiche les résultats trouvés
           <Results
             gameResults={gameResults}
-            onPointerEnter={handleGameSelected}
+            onPress={handleGameSelected}
           />
         )
       )}

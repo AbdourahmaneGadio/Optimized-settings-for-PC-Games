@@ -1,9 +1,10 @@
-import { useState, useEffect, useCallback } from "react";
-import { StyleSheet, View } from "react-native";
-import { Table, TableWrapper, Col } from "react-native-reanimated-table";
+import { useEffect, useState } from "react";
+import { Button, StyleSheet, Text, View } from "react-native";
+import { Col, Table, TableWrapper } from "react-native-reanimated-table";
 import LoadingIcon from "./LoadingIcon";
 
 export default function TableDetailsJeu({ gameSelected }) {
+
   const [dataLoaded, setDataLoaded] = useState({
     gameData: [],
     settingsName: [],
@@ -11,7 +12,18 @@ export default function TableDetailsJeu({ gameSelected }) {
     isLoading: false,
   });
 
-  // Get all the settings name (ex: Texture, Ray-Tracing, ...)
+  const [buttonSettingsClicked, setButtonSettingsClicked] = useState(false);
+
+  {
+    /* Show a form to add settings for any game */
+  }
+  const onPressButton = () => {
+    setButtonSettingsClicked(true);
+  };
+
+  {
+    /*Get all the settings name (ex: Texture, Ray-Tracing, ...)*/
+  }
   function getKeysFromJSON(gamesData) {
     let keysResults = [];
 
@@ -21,7 +33,9 @@ export default function TableDetailsJeu({ gameSelected }) {
     return keysResults;
   }
 
-  // Get all the values of the game's settings (ex: High, DLSS, ...)
+  {
+    /*Get all the values of the game's settings (ex: High, DLSS, ...)*/
+  }
   function getValuesFromJSON(gamesData) {
     let valuesResults = [];
 
@@ -33,11 +47,9 @@ export default function TableDetailsJeu({ gameSelected }) {
   }
 
   useEffect(() => {
+    setDataLoaded({ isLoading: true });
 
-    setDataLoaded({isLoading: true});
-    
     const handleFetch = async () => {
-
       try {
         let response = await fetch(
           `https://raw.githubusercontent.com/AbdourahmaneGadio/Optimized-settings-for-PC-Games/master/gamesData/${gameSelected}.json`
@@ -59,6 +71,7 @@ export default function TableDetailsJeu({ gameSelected }) {
         });
       } catch (error) {
         console.error(error);
+        setDataLoaded({ isLoading: false });
       }
     };
 
@@ -70,30 +83,45 @@ export default function TableDetailsJeu({ gameSelected }) {
       {/* Chargement */}
       {dataLoaded.isLoading && <LoadingIcon />}
 
-      {!dataLoaded.isLoading && (
-        <Table
-          style={{ flexDirection: "row" }}
-          borderStyle={{ borderWidth: 1 }}
-        >
-          <TableWrapper style={{ width: 500 }}>
-            <TableWrapper style={{ flexDirection: "row" }}>
-              <Col
-                data={dataLoaded.settingsName}
-                style={styles.title}
-                heightArr={[30, 30, 30, 30]}
-                textStyle={styles.titleText}
-              />
+      {/* La table avec les résultats */}
+      {!dataLoaded.isLoading && dataLoaded.gameData != null && (
+        <View>
+          <Table
+            style={{ flexDirection: "row" }}
+            borderStyle={{ borderWidth: 1 }}
+          >
+            <TableWrapper style={{ width: 500 }}>
+              <TableWrapper style={{ flexDirection: "row" }}>
+                <Col
+                  data={dataLoaded.settingsName}
+                  style={styles.title}
+                  heightArr={[30, 30, 30, 30]}
+                  textStyle={styles.titleText}
+                />
 
-              <Col
-                data={dataLoaded.settingsOptions}
-                style={styles.title}
-                heightArr={[30, 30, 30, 30]}
-                textStyle={styles.titleText}
-              />
+                <Col
+                  data={dataLoaded.settingsOptions}
+                  style={styles.title}
+                  heightArr={[30, 30, 30, 30]}
+                  textStyle={styles.titleText}
+                />
+              </TableWrapper>
             </TableWrapper>
-          </TableWrapper>
-        </Table>
+          </Table>
+        </View>
       )}
+
+      {/* Si aucun paramètre existe */}
+      {!dataLoaded.isLoading &&
+        dataLoaded.gameData == null &&
+        !buttonSettingsClicked && (
+          <View>
+            <Text>No settings found for this game.</Text>
+            <Button title="Add settings" onPress={onPressButton} />
+          </View>
+        )
+        }
+
     </View>
   );
 }
