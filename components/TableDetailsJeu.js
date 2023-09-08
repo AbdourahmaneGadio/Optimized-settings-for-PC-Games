@@ -88,7 +88,7 @@ export default function TableDetailsJeu({ gameSelected }) {
         <View>
           <Table
             style={{ flexDirection: "row" }}
-            borderStyle={{ borderWidth: 1 }}
+            borderStyle={{ borderWidth: 1,}}
           >
             <TableWrapper style={{ width: 500 }}>
               <TableWrapper style={{ flexDirection: "row" }}>

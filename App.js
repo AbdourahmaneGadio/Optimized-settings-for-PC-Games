@@ -53,19 +53,19 @@ export default function App() {
     setIsLoading(false);
   };
 
-  {
-    /* Si l'on choisit parmi les résultats */
-  }
-  const handleGameSelected = (e) => {
+    {
+      /* Si l'on choisit parmi les résultats */
+    }
+    const handleGameSelected = (e) => {
+      setGameSelected();
+      setSearchActive(false);
+      setGameResults([]);
 
-    setGameSelected();
-    setSearchActive(false);
-    setGameResults([]);
+      let gameSelectedName = e.target.id;
 
-    let gameSelectedName = e.target.id;
+      setGameSelected(gameSelectedName);
+    };
 
-    setGameSelected(gameSelectedName);
-  };
 
   {
     /* Dès que l'on tape sur la barre de recherche */

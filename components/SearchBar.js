@@ -1,7 +1,7 @@
 // SearchBar.js
+import { Entypo, Feather } from "@expo/vector-icons";
 import React from "react";
-import { StyleSheet, TextInput, View, Keyboard, Button } from "react-native";
-import { Feather, Entypo } from "@expo/vector-icons";
+import { StyleSheet, TextInput, View } from "react-native";
 
 const SearchBar = ({ onPress, onChange, searchActive, onPressReset }) => {
 
