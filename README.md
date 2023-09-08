@@ -28,8 +28,7 @@ You can download the latest version here : [Optimized Settings for PC Games App]
     
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-
+![Screenshot 2023-09-08 at 16-21-21 expo-app](https://github.com/AbdourahmaneGadio/Optimized-settings-for-PC-Games/assets/91066652/8411deb8-2b25-45c6-b6d7-98b185c99ede)
 
 ## Author
 
