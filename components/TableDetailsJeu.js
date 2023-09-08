@@ -1,12 +1,14 @@
 import { useState, useEffect, useCallback } from "react";
 import { StyleSheet, View } from "react-native";
 import { Table, TableWrapper, Col } from "react-native-reanimated-table";
+import LoadingIcon from "./LoadingIcon";
 
 export default function TableDetailsJeu({ gameSelected }) {
   const [dataLoaded, setDataLoaded] = useState({
     gameData: [],
     settingsName: [],
     settingsOptions: [],
+    isLoading: false,
   });
 
   // Get all the settings name (ex: Texture, Ray-Tracing, ...)
@@ -31,6 +33,8 @@ export default function TableDetailsJeu({ gameSelected }) {
   }
 
   useEffect(() => {
+
+    setDataLoaded({isLoading: true});
     
     const handleFetch = async () => {
 
@@ -51,6 +55,7 @@ export default function TableDetailsJeu({ gameSelected }) {
           gameData: gameDataFetch,
           settingsName: keysJSON,
           settingsOptions: valuesJSON,
+          isLoading: false,
         });
       } catch (error) {
         console.error(error);
@@ -62,25 +67,33 @@ export default function TableDetailsJeu({ gameSelected }) {
 
   return (
     <View>
-      <Table style={{ flexDirection: "row" }} borderStyle={{ borderWidth: 1 }}>
-        <TableWrapper style={{ width: 500 }}>
-          <TableWrapper style={{ flexDirection: "row" }}>
-            <Col
-              data={dataLoaded.settingsName}
-              style={styles.title}
-              heightArr={[30, 30, 30, 30]}
-              textStyle={styles.titleText}
-            />
+      {/* Chargement */}
+      {dataLoaded.isLoading && <LoadingIcon />}
 
-            <Col
-              data={dataLoaded.settingsOptions}
-              style={styles.title}
-              heightArr={[30, 30, 30, 30]}
-              textStyle={styles.titleText}
-            />
+      {!dataLoaded.isLoading && (
+        <Table
+          style={{ flexDirection: "row" }}
+          borderStyle={{ borderWidth: 1 }}
+        >
+          <TableWrapper style={{ width: 500 }}>
+            <TableWrapper style={{ flexDirection: "row" }}>
+              <Col
+                data={dataLoaded.settingsName}
+                style={styles.title}
+                heightArr={[30, 30, 30, 30]}
+                textStyle={styles.titleText}
+              />
+
+              <Col
+                data={dataLoaded.settingsOptions}
+                style={styles.title}
+                heightArr={[30, 30, 30, 30]}
+                textStyle={styles.titleText}
+              />
+            </TableWrapper>
           </TableWrapper>
-        </TableWrapper>
-      </Table>
+        </Table>
+      )}
     </View>
   );
 }

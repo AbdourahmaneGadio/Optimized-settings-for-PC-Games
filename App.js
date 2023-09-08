@@ -4,12 +4,14 @@ import { StyleSheet, Text, View } from "react-native";
 import Results from "./components/Results";
 import SearchBar from "./components/SearchBar";
 import TableDetailsJeu from "./components/TableDetailsJeu";
+import LoadingIcon from "./components/LoadingIcon";
 
 import { RAWG_API_KEY } from "@env";
 
 export default function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchActive, setSearchActive] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [gameResults, setGameResults] = useState([]);
   const [gameSelected, setGameSelected] = useState();
 
@@ -17,15 +19,17 @@ export default function App() {
   const handleSearch = async (e) => {
     e.preventDefault();
 
+    setIsLoading(true);
+
     // On rajoute des tirets dans le terme recherché pour la recherche avec l'api
     //  Ex: Psychonauts 2 devient psychonauts-2
-    let termeFinal = searchTerm.split(" ").join("-").toLowerCase()
+    let termeFinal = searchTerm.split(" ").join("-").toLowerCase();
 
     // Par défaut, on considère qu'on a aucun résultat
     setGameResults([]);
 
     // On récupère les résultats
-    fetch(`https://rawg.io/api/games?search=${termeFinal}&key=${RAWG_API_KEY}`)
+    await fetch(`https://rawg.io/api/games?search=${termeFinal}&key=${RAWG_API_KEY}`)
       .then((resp) => resp.json())
       .then(({ results }) => {
         results === undefined ? setGameResults([]) : setGameResults(results);
@@ -34,6 +38,7 @@ export default function App() {
         setGameResults("error");
       });
     setSearchTerm("");
+    setIsLoading(false);
   };
 
   // Si l'on choisit parmi les résultats
@@ -76,19 +81,23 @@ export default function App() {
       />
 
       {/* Résultats */}
+      {/* Chargement */}
+      {isLoading && searchActive && <LoadingIcon />}
       {searchActive &&
       gameResults &&
       // Si erreur lors du fetch
       gameResults == "error" ? (
         <Text>Something wrong happened, try later.</Text>
-      ) : // Si on a des résultats
-      gameResults.length > 0 &&
-        // Sinon, on affiche les résultats trouvés
-        <Results
-          gameResults={gameResults}
-          onPointerEnter={handleGameSelected}
-        />
-}
+      ) : (
+        // Si on a des résultats
+        gameResults.length > 0 && (
+          // Sinon, on affiche les résultats trouvés
+          <Results
+            gameResults={gameResults}
+            onPointerEnter={handleGameSelected}
+          />
+        )
+      )}
 
       {/* Les détails du jeu choisi parmi les résultats */}
       {gameSelected && <TableDetailsJeu gameSelected={gameSelected} />}
