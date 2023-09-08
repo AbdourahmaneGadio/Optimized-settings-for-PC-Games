@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "expo-app",
-    "slug": "expo-app",
+    "name": "Optimized Settings for PC Games",
+    "slug": "optimized-setttings-for-pc-games",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -15,17 +15,29 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "runtimeVersion": {
+        "policy": "appVersion"
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.gadio.optimizedgames"
+      "package": "com.gadio.optimizedgames",
+      "runtimeVersion": "1.0.0"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "ee116722-3144-470f-9e29-98903cea435c"
+      }
+    },
+    "updates": {
+      "url": "https://u.expo.dev/ee116722-3144-470f-9e29-98903cea435c"
     }
   }
 }
