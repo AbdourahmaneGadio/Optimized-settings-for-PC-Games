@@ -4,7 +4,6 @@ import { Col, Table, TableWrapper } from "react-native-reanimated-table";
 import LoadingIcon from "./LoadingIcon";
 
 export default function TableDetailsJeu({ gameSelected }) {
-
   const [dataLoaded, setDataLoaded] = useState({
     gameData: [],
     settingsName: [],
@@ -70,7 +69,6 @@ export default function TableDetailsJeu({ gameSelected }) {
           isLoading: false,
         });
       } catch (error) {
-        console.error(error);
         setDataLoaded({ isLoading: false });
       }
     };
@@ -88,7 +86,7 @@ export default function TableDetailsJeu({ gameSelected }) {
         <View>
           <Table
             style={{ flexDirection: "row" }}
-            borderStyle={{ borderWidth: 1,}}
+            borderStyle={{ borderWidth: 1 }}
           >
             <TableWrapper style={{ width: 500 }}>
               <TableWrapper style={{ flexDirection: "row" }}>
@@ -119,9 +117,7 @@ export default function TableDetailsJeu({ gameSelected }) {
             <Text>No settings found for this game.</Text>
             <Button title="Add settings" onPress={onPressButton} />
           </View>
-        )
-        }
-
+        )}
     </View>
   );
 }

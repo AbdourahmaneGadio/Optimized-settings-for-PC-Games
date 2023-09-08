@@ -1,14 +1,20 @@
 import { RAWG_API_KEY } from "@env";
-import React, { useState } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome";
-import { ImageBackground } from "react-native-web";
 import { LinearGradient } from "expo-linear-gradient";
+import React from "react";
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+  ImageBackground,
+} from "react-native";
+import { AntDesign } from "@expo/vector-icons";
 
 export default function ZoneJeuIndividuel({ actualGame, onPress }) {
   const myButton = (
-    <Icon
+    <AntDesign
       name="play"
+      size={32}
       style={styles.playButton}
       onPress={() => console.log("video press")}
     />
@@ -27,19 +33,18 @@ export default function ZoneJeuIndividuel({ actualGame, onPress }) {
   };
   return (
     <View>
-      <Pressable onPress={onPress}>
+      <Pressable onPress={() => onPress(actualGame.slug)} key={actualGame.id}>
         <LinearGradient
           colors={["#04803d", "#6ea416", "#dad600"]}
-          
           style={styles.container}
         >
-          <View id={actualGame.slug}>
+          <View>
             <View style={styles.containerTitle}>
               <Text>{actualGame.name}</Text>
             </View>
             <View style={styles.imageContainer}>
               <ImageBackground
-                source={actualGame.background_image}
+                source={{ uri: actualGame.background_image }}
                 style={styles.imageCover}
                 resizeMode="cover"
               >
@@ -89,6 +94,6 @@ const styles = StyleSheet.create({
   playButton: {
     backgroundColor: "grey",
     borderRadius: 40,
-    padding: 15,
+    padding: 5,
   },
 });

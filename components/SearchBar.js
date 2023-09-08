@@ -3,7 +3,7 @@ import { Entypo, Feather } from "@expo/vector-icons";
 import React from "react";
 import { StyleSheet, TextInput, View } from "react-native";
 
-const SearchBar = ({ onPress, onChange, searchActive, onPressReset }) => {
+const SearchBar = ({ onPress, onChangeText, searchActive, onPressReset }) => {
 
     return (
         <View style={styles.container}>
@@ -21,8 +21,7 @@ const SearchBar = ({ onPress, onChange, searchActive, onPressReset }) => {
                         ? styles.input__clicked
                         : styles.input__unclicked}
                     placeholder="Search the game's title"
-                    onChange={onChange}
-                    onFocus={onChange}
+                    onChangeText={onChangeText}
                 />
                 {/* search Icon */}
                 {searchActive && <Feather

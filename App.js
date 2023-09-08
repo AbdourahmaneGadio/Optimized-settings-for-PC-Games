@@ -53,29 +53,28 @@ export default function App() {
     setIsLoading(false);
   };
 
-    {
-      /* Si l'on choisit parmi les résultats */
-    }
-    const handleGameSelected = (e) => {
-      setGameSelected();
-      setSearchActive(false);
-      setGameResults([]);
+  {
+    /* Si l'on choisit parmi les résultats */
+  }
+  const handleGameSelected = (e) => {
+    setGameSelected();
+    setSearchActive(false);
+    setGameResults([]);
 
-      let gameSelectedName = e.target.id;
+    let gameSelectedName = e;
 
-      setGameSelected(gameSelectedName);
-    };
-
+    setGameSelected(gameSelectedName);
+  };
 
   {
     /* Dès que l'on tape sur la barre de recherche */
   }
   const handleKeyboardEntry = (e) => {
     setSearchActive(true);
-    setSearchTerm(e.target.value);
     {
       /* On enregistre le terme recherché */
     }
+    setSearchTerm(e);
     setGameSelected();
   };
 
@@ -97,7 +96,7 @@ export default function App() {
       {/* Barre de recherche */}
       <SearchBar
         onPress={handleSearch}
-        onChange={handleKeyboardEntry}
+        onChangeText={handleKeyboardEntry}
         searchActive={searchActive}
         onPressReset={resetSearch}
       />
@@ -111,10 +110,7 @@ export default function App() {
         <Text>Something wrong happened, try later.</Text>
       ) : (
         gameResults.length > 0 && (
-          <Results
-            gameResults={gameResults}
-            onPress={handleGameSelected}
-          />
+          <Results gameResults={gameResults} onPress={handleGameSelected} />
         )
       )}
 
