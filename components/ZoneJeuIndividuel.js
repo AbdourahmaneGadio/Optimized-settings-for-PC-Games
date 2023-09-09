@@ -1,7 +1,7 @@
 import { RAWG_API_KEY } from "@env";
 import { AntDesign } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
-import React from "react";
+import React, { useState } from "react";
 import {
   ImageBackground,
   Pressable,
@@ -31,13 +31,18 @@ export default function ZoneJeuIndividuel({ actualGame, onPress }) {
         console.log(error);
       });
   };
+
   return (
     <View>
       <Pressable onPress={() => onPress(actualGame.slug)} key={actualGame.id}>
-        <LinearGradient
-          colors={["#04803d", "#6ea416", "#dad600"]}
+        <ImageBackground
+          source={{ uri: actualGame.background_image }}
           style={styles.container}
+          resizeMode="cover"
+          blurRadius={5}
+          imageStyle={{ borderRadius: 30 }}
         >
+          {" "}
           <View>
             <View style={styles.containerTitle}>
               <Text>{actualGame.name}</Text>
@@ -52,7 +57,7 @@ export default function ZoneJeuIndividuel({ actualGame, onPress }) {
               </ImageBackground>
             </View>
           </View>
-        </LinearGradient>
+        </ImageBackground>
       </Pressable>
     </View>
   );
@@ -60,12 +65,9 @@ export default function ZoneJeuIndividuel({ actualGame, onPress }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "lightgrey",
     alignItems: "center",
     padding: 30,
     justifyContent: "flex-start",
-    borderRadius: 30,
-    // width: "20%",
     cursor: "pointer",
     marginTop: 10,
     marginBottom: 10,
@@ -76,6 +78,7 @@ const styles = StyleSheet.create({
     borderRadius: 18,
     marginTop: 10,
     marginBottom: 10,
+    alignItems: "center",
   },
   imageContainer: {
     width: 300,
