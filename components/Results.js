@@ -12,14 +12,11 @@ import ZoneJeuIndividuel from "./ZoneJeuIndividuel";
 const Results = ({ gameResults, onPress }) => {
   return (
     <View>
-      <Text>Results : </Text>
       <SafeAreaView style={styles.container}>
         <FlatList
           data={gameResults}
           renderItem={({ item }) => (
-            <ZoneJeuIndividuel 
-            actualGame={item} 
-            onPress={onPress} />
+            <ZoneJeuIndividuel actualGame={item} onPress={onPress} />
           )}
         />
       </SafeAreaView>

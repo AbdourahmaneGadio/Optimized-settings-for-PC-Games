@@ -42,10 +42,10 @@ export default function ZoneJeuIndividuel({ actualGame, onPress }) {
           blurRadius={5}
           imageStyle={{ borderRadius: 30 }}
         >
-          {" "}
+      
           <View>
             <View style={styles.containerTitle}>
-              <Text>{actualGame.name}</Text>
+              <Text style={{ fontFamily: "Quicksand" }}>{actualGame.name}</Text>
             </View>
             <View style={styles.imageContainer}>
               <ImageBackground

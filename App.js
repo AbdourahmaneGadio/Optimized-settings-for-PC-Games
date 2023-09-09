@@ -5,10 +5,15 @@ import LoadingIcon from "./components/LoadingIcon";
 import Results from "./components/Results";
 import SearchBar from "./components/SearchBar";
 import TableDetailsJeu from "./components/TableDetailsJeu";
+import { useFonts, Quicksand_300Light } from "@expo-google-fonts/quicksand";
 
 import { RAWG_API_KEY } from "@env";
 
 export default function App() {
+  let [fontsLoaded, fontError] = useFonts({
+    Quicksand_300Light,
+  });
+
   const [searchTerm, setSearchTerm] = useState("");
   const [searchActive, setSearchActive] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -91,7 +96,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       {/* Titre du site/appli */}
-      <Text>Optimized settings for PC Games</Text>
+      <Text style={{fontFamily: 'Quicksand'}}>Optimized settings for PC Games</Text>
 
       {/* Barre de recherche */}
       <SearchBar
