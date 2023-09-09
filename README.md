@@ -24,7 +24,7 @@ Happy gaming!
 
 ### Android devices
 
-You can download the latest version here : [Optimized Settings for PC Games App](linkurl)
+You can download the latest version here : [Optimized Settings for PC Games App](https://github.com/AbdourahmaneGadio/Optimized-settings-for-PC-Games/releases/latest/download/optimized-settings-for-pc-games.apk)
     
 ## Screenshots
 
