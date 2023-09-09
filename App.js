@@ -10,6 +10,8 @@ import { RAWG_API_KEY } from "@env";
 
 import { useFonts } from "expo-font";
 
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+
 export default function App() {
   const [fontsLoaded] = useFonts({
     Quicksand: require("./assets/fonts/Quicksand/Quicksand-VariableFont_wght.ttf"),
@@ -95,38 +97,40 @@ export default function App() {
   };
 
   return (
-    <View style={styles.container}>
-      {/* Titre du site/appli */}
-      <Text style={{ fontFamily: "Quicksand" }}>
-        Optimized settings for PC Games
-      </Text>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <View style={styles.container}>
+        {/* Titre du site/appli */}
+        <Text style={{ fontFamily: "Quicksand" }}>
+          Optimized settings for PC Games
+        </Text>
 
-      {/* Barre de recherche */}
-      <SearchBar
-        onPress={handleSearch}
-        onChangeText={handleKeyboardEntry}
-        searchActive={searchActive}
-        onPressReset={resetSearch}
-      />
+        {/* Barre de recherche */}
+        <SearchBar
+          onPress={handleSearch}
+          onChangeText={handleKeyboardEntry}
+          searchActive={searchActive}
+          onPressReset={resetSearch}
+        />
 
-      {/* Résultats */}
-      {/* Chargement */}
-      {isLoading && searchActive && <LoadingIcon />}
+        {/* Résultats */}
+        {/* Chargement */}
+        {isLoading && searchActive && <LoadingIcon />}
 
-      {/* Si erreur lors du fetch */}
-      {searchActive && gameResults && gameResults == "error" ? (
-        <Text>Something wrong happened, try later.</Text>
-      ) : (
-        gameResults.length > 0 && (
-          <Results gameResults={gameResults} onPress={handleGameSelected} />
-        )
-      )}
+        {/* Si erreur lors du fetch */}
+        {searchActive && gameResults && gameResults == "error" ? (
+          <Text>Something wrong happened, try later.</Text>
+        ) : (
+          gameResults.length > 0 && (
+            <Results gameResults={gameResults} onPress={handleGameSelected} />
+          )
+        )}
 
-      {/* Les détails du jeu choisi parmi les résultats */}
-      {gameSelected && <TableDetailsJeu gameSelected={gameSelected} />}
+        {/* Les détails du jeu choisi parmi les résultats */}
+        {gameSelected && <TableDetailsJeu gameSelected={gameSelected} />}
 
-      <StatusBar style="auto" />
-    </View>
+        <StatusBar style="auto" />
+      </View>
+    </GestureHandlerRootView>
   );
 }
 

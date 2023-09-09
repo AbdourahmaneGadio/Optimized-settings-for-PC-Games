@@ -81,30 +81,32 @@ export default function ZoneJeuIndividuel({ actualGame, onPress }) {
             <View>
               {/* Video */}
               {dataPreview && dataPreview.video && (
-                <HoverVideoPlayer
-                  videoSrc={dataPreview.video}
-                  style={styles.imageContainer}
-                  pausedOverlay={
-                    <View>
-                      <ImageBackground
-                        source={{ uri: actualGame.background_image }}
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          objectFit: "cover",
-                        }}
-                      >
-                        {myButton}
-                      </ImageBackground>
-                    </View>
-                  }
-                  loadingOverlay={
-                    <View>
-                      <LoadingIcon />
-                    </View>
-                  }
-                  controlsList="nodownload nofullscreen"
-                />
+                <View>
+                  <HoverVideoPlayer
+                    videoSrc={dataPreview.video}
+                    style={styles.imageContainer}
+                    pausedOverlay={
+                      <View>
+                        <ImageBackground
+                          source={{ uri: actualGame.background_image }}
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "cover",
+                          }}
+                        >
+                          {myButton}
+                        </ImageBackground>
+                      </View>
+                    }
+                    loadingOverlay={
+                      <View>
+                        <LoadingIcon />
+                      </View>
+                    }
+                    controlsList="nodownload nofullscreen"
+                  />
+                </View>
               )}
               {/* Screenshots */}
 
