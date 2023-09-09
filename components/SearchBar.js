@@ -4,39 +4,42 @@ import React from "react";
 import { StyleSheet, TextInput, View } from "react-native";
 
 const SearchBar = ({ onPress, onChangeText, searchActive, onPressReset }) => {
+  return (
+    <View style={styles.container}>
+      <View
+        style={
+          searchActive ? styles.searchBar__clicked : styles.searchBar__unclicked
+        }
+      >
+        {/* Input field */}
+        <TextInput
+          style={searchActive ? styles.input__clicked : styles.input__unclicked}
+          placeholder="Search the game's title"
+          onChangeText={onChangeText}
+        />
+        {/* search Icon */}
+        {searchActive && (
+          <Feather
+            name="search"
+            size={20}
+            color="black"
+            style={{ marginLeft: 10, marginRight: 10 }}
+            onPress={onPress}
+          />
+        )}
 
-    return (
-        <View style={styles.container}>
-            <View
-                style={
-                    searchActive
-                        ? styles.searchBar__clicked
-                        : styles.searchBar__unclicked
-                }
-            >
-
-                {/* Input field */}
-                <TextInput
-                    style={searchActive
-                        ? styles.input__clicked
-                        : styles.input__unclicked}
-                    placeholder="Search the game's title"
-                    onChangeText={onChangeText}
-                />
-                {/* search Icon */}
-                {searchActive && <Feather
-                    name="search"
-                    size={20}
-                    color="black"
-                    style={{ marginLeft: 10, marginRight: 10, }}
-                    onPress={onPress}
-                />}
-
-                {searchActive && <Entypo name="cross" size={20} color="black" style={{ padding: 1, marginLeft: 10, marginRight: 10, }} onPress={onPressReset} />}
-            </View>
-
-        </View>
-    );
+        {searchActive && (
+          <Entypo
+            name="cross"
+            size={20}
+            color="black"
+            style={{ padding: 1, marginLeft: 10, marginRight: 10 }}
+            onPress={onPressReset}
+          />
+        )}
+      </View>
+    </View>
+  );
 };
 export default SearchBar;
 

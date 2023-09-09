@@ -1,7 +1,6 @@
 import { RAWG_API_KEY } from "@env";
 import { AntDesign } from "@expo/vector-icons";
-import { LinearGradient } from "expo-linear-gradient";
-import React, { useState } from "react";
+import React from "react";
 import {
   ImageBackground,
   Pressable,

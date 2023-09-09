@@ -5,14 +5,17 @@ import LoadingIcon from "./components/LoadingIcon";
 import Results from "./components/Results";
 import SearchBar from "./components/SearchBar";
 import TableDetailsJeu from "./components/TableDetailsJeu";
-import { useFonts, Quicksand_300Light } from "@expo-google-fonts/quicksand";
 
 import { RAWG_API_KEY } from "@env";
 
+import { useFonts } from "expo-font";
+
+
 export default function App() {
-  let [fontsLoaded, fontError] = useFonts({
-    Quicksand_300Light,
-  });
+
+const [fontsLoaded] = useFonts({
+  Quicksand: require("./assets/fonts/Quicksand/Quicksand-VariableFont_wght.ttf"),
+});
 
   const [searchTerm, setSearchTerm] = useState("");
   const [searchActive, setSearchActive] = useState(false);

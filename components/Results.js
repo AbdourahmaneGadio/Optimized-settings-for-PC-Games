@@ -1,11 +1,10 @@
 import React from "react";
 import {
-  Text,
-  View,
   FlatList,
   SafeAreaView,
   StatusBar,
   StyleSheet,
+  View
 } from "react-native";
 import ZoneJeuIndividuel from "./ZoneJeuIndividuel";
 
