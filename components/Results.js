@@ -4,7 +4,7 @@ import {
   SafeAreaView,
   StatusBar,
   StyleSheet,
-  View
+  View,
 } from "react-native";
 import ZoneJeuIndividuel from "./ZoneJeuIndividuel";
 
