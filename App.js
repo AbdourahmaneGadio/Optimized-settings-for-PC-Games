@@ -10,12 +10,10 @@ import { RAWG_API_KEY } from "@env";
 
 import { useFonts } from "expo-font";
 
-
 export default function App() {
-
-const [fontsLoaded] = useFonts({
-  Quicksand: require("./assets/fonts/Quicksand/Quicksand-VariableFont_wght.ttf"),
-});
+  const [fontsLoaded] = useFonts({
+    Quicksand: require("./assets/fonts/Quicksand/Quicksand-VariableFont_wght.ttf"),
+  });
 
   const [searchTerm, setSearchTerm] = useState("");
   const [searchActive, setSearchActive] = useState(false);
@@ -99,7 +97,9 @@ const [fontsLoaded] = useFonts({
   return (
     <View style={styles.container}>
       {/* Titre du site/appli */}
-      <Text style={{fontFamily: 'Quicksand'}}>Optimized settings for PC Games</Text>
+      <Text style={{ fontFamily: "Quicksand" }}>
+        Optimized settings for PC Games
+      </Text>
 
       {/* Barre de recherche */}
       <SearchBar

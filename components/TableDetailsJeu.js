@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
-import { Button, StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { Col, Table, TableWrapper } from "react-native-reanimated-table";
 import LoadingIcon from "./LoadingIcon";
 
@@ -22,45 +28,34 @@ export default function TableDetailsJeu({ gameSelected }) {
   };
 
   const tableForSettings = () => {
-
-   const addLines = () => {
-      let test = [];
-let i;
-      for(i = 0; i < numberSettings; i++){
-        test.push(
-          <TableWrapper style={{ flexDirection: "row" }}>
-            <Col
-              data={["test"]}
-              style={styles.title}
-              heightArr={[30, 30, 30, 30]}
-              textStyle={styles.titleText}
+    const addLines = () => {
+      let actualLines = [];
+      let i;
+      for (i = 0; i < numberSettings; i++) {
+        actualLines.push(
+          <View style={styles.multiplesSettingsLines} key={i}>
+            <TextInput
+              style={styles.button}
+              placeholder="Example: Textures"
+              placeholderTextColor="grey"
+              autoCapitalize="words"
+              inputMode="text"
             />
-
-            <Col
-              data={["test"]}
-              style={styles.title}
-              heightArr={[30, 30, 30, 30]}
-              textStyle={styles.titleText}
+            <TextInput
+              style={styles.button}
+              placeholder="Example: High"
+              placeholderTextColor="grey"
+              autoCapitalize="words"
+              inputMode="text"
             />
-          </TableWrapper>
+          </View>
         );
       }
 
-      return test;
-    }
+      return <View>{actualLines}</View>;
+    };
 
-    return (
-      <View>
-        <Table
-          style={{ flexDirection: "row" }}
-          borderStyle={{ borderWidth: 1 }}
-        >
-          <TableWrapper style={{ width: 500 }}>
-             {addLines()}
-          </TableWrapper>
-        </Table>
-      </View>
-    );
+    return <View>{addLines()}</View>;
   };
 
   {
@@ -196,7 +191,7 @@ let i;
             <Text style={styles.titleText}>
               No settings found for this game.
             </Text>
-            <View style={styles.buttonContainer}>
+            <View style={styles.singleButtonContainer}>
               {buttonForSettings({
                 style: styles.button,
                 onPress: onPressButton,
@@ -210,11 +205,12 @@ let i;
         dataLoaded.gameData == null &&
         buttonSettingsClicked && (
           <View>
-            <Text>Number of settings : {numberSettings}</Text>
-            <Text>Settings's name :</Text>
-            <Text>Value : </Text>
+            <Text style={styles.titleText}>
+              Number of settings : {numberSettings}
+            </Text>
+
             {tableForSettings()}
-            <View style={styles.buttonAddSettingsContainer}>
+            <View style={styles.multiplesButtonContainer}>
               {/* Button to remove settings */}
               {buttonForSettings({
                 style: styles.button,
@@ -229,7 +225,7 @@ let i;
                 text: "+ Add other settings",
               })}
             </View>
-            <View style={styles.buttonAddSettingsContainer}>
+            <View style={styles.singleButtonContainer}>
               {/* Button to submit the settings */}
               {buttonForSettings({
                 style: styles.buttonSubmit,
@@ -252,13 +248,22 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontFamily: "Quicksand",
   },
-  buttonContainer: {
+  singleButtonContainer: {
+    justifyContent: "center",
+    alignContent: "center",
+    alignSelf: "center",
     marginTop: 15,
   },
-  buttonAddSettingsContainer: {
+  multiplesSettingsLines: {
+    marginTop: 20,
+  },
+  multiplesButtonContainer: {
     flex: 1,
     flexDirection: "row",
-    marginTop: 15,
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
+    marginTop: 20,
+    maxHeight: 100,
   },
   button: {
     backgroundColor: "white",
@@ -271,6 +276,5 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 15,
     margin: 5,
-    width: "100%",
   },
 });
