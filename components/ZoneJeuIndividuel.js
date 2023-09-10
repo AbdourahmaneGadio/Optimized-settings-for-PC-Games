@@ -3,15 +3,15 @@ import { AntDesign } from "@expo/vector-icons";
 import React, { useEffect, useState } from "react";
 import HoverVideoPlayer from "react-hover-video-player";
 import {
-  Image,
   ImageBackground,
+  Platform,
   Pressable,
   StyleSheet,
   Text,
-  View,Platform
+  View
 } from "react-native";
-import LoadingIcon from "./LoadingIcon";
 import Carousel from "react-native-reanimated-carousel";
+import LoadingIcon from "./LoadingIcon";
 
 export default function ZoneJeuIndividuel({ actualGame, onPress }) {
   const myButton = (
@@ -59,7 +59,7 @@ export default function ZoneJeuIndividuel({ actualGame, onPress }) {
 
     getVideo();
 
-    if (!dataPreview.video) {
+    if (dataPreview.video && dataPreview.video == "") {
       getScreenshots();
     }
   }, [setDataPreview]);
@@ -81,26 +81,31 @@ export default function ZoneJeuIndividuel({ actualGame, onPress }) {
             <View>
               {/* Video */}
               {dataPreview && dataPreview.video && (
-                <View>
+                <View style={styles.imageContainer}>
                   {Platform.OS == "web" ? (
                     <HoverVideoPlayer
                       videoSrc={dataPreview.video}
-                      style={styles.imageContainer}
                       pausedOverlay={
                         <View>
                           <ImageBackground
                             source={{ uri: actualGame.background_image }}
                             style={{
+                              justifyContent: "center",
+                              alignItems: "center",
                               width: "100%",
-                              height: "100%",
+                              height: 200,
                             }}
-                          >
-                            {myButton}
-                          </ImageBackground>
+                          />
                         </View>
                       }
                       loadingOverlay={
-                        <View>
+                        <View
+                          style={{
+                            flex: 1,
+                            justifyContent: "center",
+                            alignItems: "center",
+                          }}
+                        >
                           <LoadingIcon />
                         </View>
                       }
@@ -113,10 +118,10 @@ export default function ZoneJeuIndividuel({ actualGame, onPress }) {
                         style={{
                           width: "100%",
                           height: "100%",
-                          
-                          alignContent: "center",
+                          flex: 1,
+                          resizeMode: "cover",
                           justifyContent: "center",
-                          alignItems: "center"
+                          alignItems: "center",
                         }}
                       >
                         {myButton}
@@ -186,7 +191,7 @@ const styles = StyleSheet.create({
   },
   playButton: {
     padding: 5,
-    backgroundColor: 'white',
+    backgroundColor: "white",
     borderRadius: 20,
-  }
+  },
 });
