@@ -8,7 +8,7 @@ import {
   Pressable,
   StyleSheet,
   Text,
-  View,
+  View,Platform
 } from "react-native";
 import LoadingIcon from "./LoadingIcon";
 import Carousel from "react-native-reanimated-carousel";
@@ -39,7 +39,7 @@ export default function ZoneJeuIndividuel({ actualGame, onPress }) {
           setDataPreview({ video: video });
         })
         .catch((error) => {
-          console.log("error");
+          console.log(error);
         });
     };
 
@@ -82,30 +82,47 @@ export default function ZoneJeuIndividuel({ actualGame, onPress }) {
               {/* Video */}
               {dataPreview && dataPreview.video && (
                 <View>
-                  <HoverVideoPlayer
-                    videoSrc={dataPreview.video}
-                    style={styles.imageContainer}
-                    pausedOverlay={
-                      <View>
-                        <ImageBackground
-                          source={{ uri: actualGame.background_image }}
-                          style={{
-                            width: "100%",
-                            height: "100%",
-                            objectFit: "cover",
-                          }}
-                        >
-                          {myButton}
-                        </ImageBackground>
-                      </View>
-                    }
-                    loadingOverlay={
-                      <View>
-                        <LoadingIcon />
-                      </View>
-                    }
-                    controlsList="nodownload nofullscreen"
-                  />
+                  {Platform.OS == "web" ? (
+                    <HoverVideoPlayer
+                      videoSrc={dataPreview.video}
+                      style={styles.imageContainer}
+                      pausedOverlay={
+                        <View>
+                          <ImageBackground
+                            source={{ uri: actualGame.background_image }}
+                            style={{
+                              width: "100%",
+                              height: "100%",
+                            }}
+                          >
+                            {myButton}
+                          </ImageBackground>
+                        </View>
+                      }
+                      loadingOverlay={
+                        <View>
+                          <LoadingIcon />
+                        </View>
+                      }
+                      controlsList="nodownload nofullscreen"
+                    />
+                  ) : (
+                    <View style={styles.imageContainer}>
+                      <ImageBackground
+                        source={{ uri: actualGame.background_image }}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          
+                          alignContent: "center",
+                          justifyContent: "center",
+                          alignItems: "center"
+                        }}
+                      >
+                        {myButton}
+                      </ImageBackground>
+                    </View>
+                  )}
                 </View>
               )}
               {/* Screenshots */}
@@ -167,4 +184,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  playButton: {
+    padding: 5,
+    backgroundColor: 'white',
+    borderRadius: 20,
+  }
 });
