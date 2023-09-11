@@ -48,7 +48,7 @@ export default function App() {
       /* On récupère les résultats */
     }
     await fetch(
-      `https://rawg.io/api/games?search=${termeFinal}&key=${RAWG_API_KEY}`
+      `https://rawg.io/api/games?search=${termeFinal}&parent_platforms=1&key=${RAWG_API_KEY}`
     )
       .then((resp) => resp.json())
       .then(({ results }) => {
