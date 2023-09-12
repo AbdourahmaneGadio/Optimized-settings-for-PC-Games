@@ -27,19 +27,30 @@ export default function TableDetailsJeu({ gameSelected }) {
     );
   };
 
+  const handleChangeSettingsKeys = (index, text) => {
+  }
+
+  const handleChangeSettingsValues = (index, text) => {
+  }
+
   const tableForSettings = () => {
     const addLines = () => {
       let actualLines = [];
-      let i;
-      for (i = 0; i < numberSettings; i++) {
+      let indice = 0;
+      for (indice = 0; indice < numberSettings; indice++) {
         actualLines.push(
-          <View style={styles.multiplesSettingsLines} key={i}>
+          <View style={styles.multiplesSettingsLines} key={indice}>
+            {/* Settings row id */}
+            <Text style={styles.titleText}>
+              Settings n° {indice + 1}
+            </Text>
             <TextInput
               style={styles.button}
               placeholder="Example: Textures"
               placeholderTextColor="grey"
               autoCapitalize="words"
               inputMode="text"
+              onChangeText={(text) => handleChangeSettingsKeys(indice, text)}
             />
             <TextInput
               style={styles.button}
@@ -47,6 +58,7 @@ export default function TableDetailsJeu({ gameSelected }) {
               placeholderTextColor="grey"
               autoCapitalize="words"
               inputMode="text"
+              onChangeText={(text) => handleChangeSettingsValues(indice, text)}
             />
           </View>
         );
@@ -82,16 +94,18 @@ export default function TableDetailsJeu({ gameSelected }) {
     /* Remove settings line */
   }
   const decreaseSettingsNumber = () => {
-    if (numberSettings > 1) {
-      setNumberSettings(numberSettings - 1);
-    }
+    setNumberSettings(numberSettings - 1);
   };
 
   {
     /* Submit settings */
   }
   const submitSettings = () => {
-    alert("Your settings have been submited");
+    let settingsList = "";
+    console.log(settingsValues);
+    if (confirm(`Are you sure about your settings ?\n\n${settingsList}`)) {
+      alert('Your settings have been submitted !');
+    };
   };
 
   {
@@ -123,9 +137,10 @@ export default function TableDetailsJeu({ gameSelected }) {
     setDataLoaded({ isLoading: true });
 
     const handleFetch = async () => {
+      let firstCapitalLetter = gameSelected.substring(0, 1).toUpperCase();
       try {
         let response = await fetch(
-          `https://raw.githubusercontent.com/AbdourahmaneGadio/Optimized-settings-for-PC-Games/master/gamesData/${gameSelected}.json`
+          `https://raw.githubusercontent.com/AbdourahmaneGadio/Optimized-settings-for-PC-Games/master/gamesData/${firstCapitalLetter}/${gameSelected}.json`
         );
 
         let data = await response.json();
@@ -211,8 +226,9 @@ export default function TableDetailsJeu({ gameSelected }) {
 
             {tableForSettings()}
             <View style={styles.multiplesButtonContainer}>
+
               {/* Button to remove settings */}
-              {buttonForSettings({
+              {numberSettings > 1 && buttonForSettings({
                 style: styles.button,
                 onPress: decreaseSettingsNumber,
                 text: "- Remove settings",
