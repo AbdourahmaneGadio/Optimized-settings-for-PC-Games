@@ -34,6 +34,10 @@ export default function TableDetailsJeu({ gameSelected }) {
       for (i = 0; i < numberSettings; i++) {
         actualLines.push(
           <View style={styles.multiplesSettingsLines} key={i}>
+            {/* Settings row id */}
+            <Text style={styles.titleText}>
+              Settings n° {i + 1}
+            </Text>
             <TextInput
               style={styles.button}
               placeholder="Example: Textures"
@@ -82,16 +86,20 @@ export default function TableDetailsJeu({ gameSelected }) {
     /* Remove settings line */
   }
   const decreaseSettingsNumber = () => {
-    if (numberSettings > 1) {
-      setNumberSettings(numberSettings - 1);
-    }
+
+    setNumberSettings(numberSettings - 1);
+
   };
 
   {
     /* Submit settings */
   }
   const submitSettings = () => {
-    alert("Your settings have been submited");
+    let settingsList = "\nTextures: High\nDLSS: Low\nHair Quality: Medium\n";
+
+    if (confirm(`Are you sure about your settings ?\n\n${settingsList}`)) {
+      alert('Your settings have been submitted !');
+    };
   };
 
   {
@@ -212,8 +220,9 @@ export default function TableDetailsJeu({ gameSelected }) {
 
             {tableForSettings()}
             <View style={styles.multiplesButtonContainer}>
+
               {/* Button to remove settings */}
-              {buttonForSettings({
+              {numberSettings > 1 && buttonForSettings({
                 style: styles.button,
                 onPress: decreaseSettingsNumber,
                 text: "- Remove settings",
