@@ -27,16 +27,22 @@ export default function TableDetailsJeu({ gameSelected }) {
     );
   };
 
+  const handleChangeSettingsKeys = (index, text) => {
+  }
+
+  const handleChangeSettingsValues = (index, text) => {
+  }
+
   const tableForSettings = () => {
     const addLines = () => {
       let actualLines = [];
-      let i;
-      for (i = 0; i < numberSettings; i++) {
+      let indice = 0;
+      for (indice = 0; indice < numberSettings; indice++) {
         actualLines.push(
-          <View style={styles.multiplesSettingsLines} key={i}>
+          <View style={styles.multiplesSettingsLines} key={indice}>
             {/* Settings row id */}
             <Text style={styles.titleText}>
-              Settings n° {i + 1}
+              Settings n° {indice + 1}
             </Text>
             <TextInput
               style={styles.button}
@@ -44,6 +50,7 @@ export default function TableDetailsJeu({ gameSelected }) {
               placeholderTextColor="grey"
               autoCapitalize="words"
               inputMode="text"
+              onChangeText={(text) => handleChangeSettingsKeys(indice, text)}
             />
             <TextInput
               style={styles.button}
@@ -51,6 +58,7 @@ export default function TableDetailsJeu({ gameSelected }) {
               placeholderTextColor="grey"
               autoCapitalize="words"
               inputMode="text"
+              onChangeText={(text) => handleChangeSettingsValues(indice, text)}
             />
           </View>
         );
@@ -86,17 +94,15 @@ export default function TableDetailsJeu({ gameSelected }) {
     /* Remove settings line */
   }
   const decreaseSettingsNumber = () => {
-
     setNumberSettings(numberSettings - 1);
-
   };
 
   {
     /* Submit settings */
   }
   const submitSettings = () => {
-    let settingsList = "\nTextures: High\nDLSS: Low\nHair Quality: Medium\n";
-
+    let settingsList = "";
+    console.log(settingsValues);
     if (confirm(`Are you sure about your settings ?\n\n${settingsList}`)) {
       alert('Your settings have been submitted !');
     };
