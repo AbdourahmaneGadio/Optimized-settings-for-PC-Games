@@ -1,11 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { Col, Table, TableWrapper } from "react-native-reanimated-table";
 import LoadingIcon from "./LoadingIcon";
 
@@ -21,17 +15,30 @@ export default function TableDetailsJeu({ gameSelected }) {
 
   const buttonForSettings = ({ style, onPress, text }) => {
     return (
-      <TouchableOpacity style={style} onPress={onPress}>
+      <Pressable style={style} onPress={onPress}>
         <Text style={styles.titleText}>{text}</Text>
-      </TouchableOpacity>
+      </Pressable>
     );
   };
 
+  const [writtenSettingsKeys, setWrittenSettingsKeys] = useState([]);
+  const [writtenSettingsValues, setWrittenSettingsValues] = useState([]);
+
   const handleChangeSettingsKeys = (index, text) => {
-  }
+    setWrittenSettingsKeys(() => {
+      const newSettings = [...writtenSettingsKeys];
+      newSettings[index - 1] = text;
+      return newSettings;
+    });
+  };
 
   const handleChangeSettingsValues = (index, text) => {
-  }
+    setWrittenSettingsValues(() => {
+      const newSettings = [...writtenSettingsValues];
+      newSettings[index - 1] = text;
+      return newSettings;
+    });
+  };
 
   const tableForSettings = () => {
     const addLines = () => {
@@ -41,9 +48,7 @@ export default function TableDetailsJeu({ gameSelected }) {
         actualLines.push(
           <View style={styles.multiplesSettingsLines} key={indice}>
             {/* Settings row id */}
-            <Text style={styles.titleText}>
-              Settings n° {indice + 1}
-            </Text>
+            <Text style={styles.titleText}>Settings n° {indice + 1}</Text>
             <TextInput
               style={styles.button}
               placeholder="Example: Textures"
@@ -95,17 +100,31 @@ export default function TableDetailsJeu({ gameSelected }) {
   }
   const decreaseSettingsNumber = () => {
     setNumberSettings(numberSettings - 1);
+
+    let removeSettingsListKeys = [...writtenSettingsKeys];
+    removeSettingsListKeys.splice(numberSettings, 1);
+    setWrittenSettingsKeys(removeSettingsListKeys);
+
+    let removeSettingsListValues = [...writtenSettingsValues];
+    removeSettingsListValues.splice(numberSettings, 1);
+    setWrittenSettingsValues(removeSettingsListValues);
   };
 
   {
     /* Submit settings */
   }
   const submitSettings = () => {
-    let settingsList = "";
-    console.log(settingsValues);
-    if (confirm(`Are you sure about your settings ?\n\n${settingsList}`)) {
-      alert('Your settings have been submitted !');
-    };
+    let settingsFinalList = "";
+
+    let settingsIndex = 0;
+
+    for (settingsIndex = 0; settingsIndex < numberSettings; settingsIndex++) {
+      settingsFinalList += `${writtenSettingsKeys[settingsIndex]} : ${writtenSettingsValues[settingsIndex]}\n\n`;
+    }
+
+    if (confirm(`Are you sure about your settings ?\n\n${settingsFinalList}`)) {
+      alert("Your settings have been submitted !");
+    }
   };
 
   {
@@ -226,13 +245,13 @@ export default function TableDetailsJeu({ gameSelected }) {
 
             {tableForSettings()}
             <View style={styles.multiplesButtonContainer}>
-
               {/* Button to remove settings */}
-              {numberSettings > 1 && buttonForSettings({
-                style: styles.button,
-                onPress: decreaseSettingsNumber,
-                text: "- Remove settings",
-              })}
+              {numberSettings > 1 &&
+                buttonForSettings({
+                  style: styles.button,
+                  onPress: decreaseSettingsNumber,
+                  text: "- Remove settings",
+                })}
 
               {/* Button to add settings */}
               {buttonForSettings({
