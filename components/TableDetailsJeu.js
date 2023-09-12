@@ -123,9 +123,10 @@ export default function TableDetailsJeu({ gameSelected }) {
     setDataLoaded({ isLoading: true });
 
     const handleFetch = async () => {
+      let firstCapitalLetter = gameSelected.substring(0, 1).toUpperCase();
       try {
         let response = await fetch(
-          `https://raw.githubusercontent.com/AbdourahmaneGadio/Optimized-settings-for-PC-Games/master/gamesData/${gameSelected}.json`
+          `https://raw.githubusercontent.com/AbdourahmaneGadio/Optimized-settings-for-PC-Games/master/gamesData/${firstCapitalLetter}/${gameSelected}.json`
         );
 
         let data = await response.json();
