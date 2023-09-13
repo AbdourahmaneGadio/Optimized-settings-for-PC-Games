@@ -1,5 +1,14 @@
 import { useEffect, useState } from "react";
-import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  Alert,
+  Platform,
+  Pressable,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 import { Col, Table, TableWrapper } from "react-native-reanimated-table";
 import LoadingIcon from "./LoadingIcon";
 
@@ -41,38 +50,35 @@ export default function TableDetailsJeu({ gameSelected }) {
   };
 
   const tableForSettings = () => {
-    const addLines = () => {
-      let actualLines = [];
-      let indice = 0;
-      for (indice = 0; indice < numberSettings; indice++) {
-        actualLines.push(
-          <View style={styles.multiplesSettingsLines} key={indice}>
-            {/* Settings row id */}
-            <Text style={styles.titleText}>Settings n° {indice + 1}</Text>
-            <TextInput
-              style={styles.button}
-              placeholder="Example: Textures"
-              placeholderTextColor="grey"
-              autoCapitalize="words"
-              inputMode="text"
-              onChangeText={(text) => handleChangeSettingsKeys(indice, text)}
-            />
-            <TextInput
-              style={styles.button}
-              placeholder="Example: High"
-              placeholderTextColor="grey"
-              autoCapitalize="words"
-              inputMode="text"
-              onChangeText={(text) => handleChangeSettingsValues(indice, text)}
-            />
-          </View>
-        );
-      }
+    let actualLines = [];
+    let indice = 0;
 
-      return <View>{actualLines}</View>;
-    };
+    for (indice = 0; indice < numberSettings; indice++) {
+      actualLines.push(
+        <View style={styles.multiplesSettingsLines} key={indice}>
+          {/* Settings row id */}
+          <Text style={styles.titleText}>Settings n° {indice + 1}</Text>
+          <TextInput
+            style={styles.button}
+            placeholder="Example: Textures"
+            placeholderTextColor="grey"
+            autoCapitalize="words"
+            inputMode="text"
+            onChangeText={(text) => handleChangeSettingsKeys(indice, text)}
+          />
+          <TextInput
+            style={styles.button}
+            placeholder="Example: High"
+            placeholderTextColor="grey"
+            autoCapitalize="words"
+            inputMode="text"
+            onChangeText={(text) => handleChangeSettingsValues(indice, text)}
+          />
+        </View>
+      );
+    }
 
-    return <View>{addLines()}</View>;
+    return <View style={styles}>{actualLines}</View>;
   };
 
   {
@@ -122,8 +128,27 @@ export default function TableDetailsJeu({ gameSelected }) {
       settingsFinalList += `${writtenSettingsKeys[settingsIndex]} : ${writtenSettingsValues[settingsIndex]}\n\n`;
     }
 
-    if (confirm(`Are you sure about your settings ?\n\n${settingsFinalList}`)) {
-      alert("Your settings have been submitted !");
+    if (Platform.OS == "web") {
+      if (
+        confirm(`Are you sure about your settings ?\n\n${settingsFinalList}`)
+      ) {
+        alert("Your settings have been submitted !");
+      }
+    } else {
+      Alert.alert(
+        "Are you sure about your settings ?",
+        `${settingsFinalList}`,
+        [
+          {
+            text: "Cancel",
+            style: "cancel",
+          },
+          {
+            text: "OK",
+            onPress: () => Alert.alert("Your settings have been submitted !"),
+          },
+        ]
+      );
     }
   };
 
@@ -185,7 +210,7 @@ export default function TableDetailsJeu({ gameSelected }) {
   }, []);
 
   return (
-    <View>
+    <SafeAreaView>
       {/* Chargement */}
       {dataLoaded.isLoading && <LoadingIcon />}
 
@@ -270,7 +295,7 @@ export default function TableDetailsJeu({ gameSelected }) {
             </View>
           </View>
         )}
-    </View>
+    </SafeAreaView>
   );
 }
 
