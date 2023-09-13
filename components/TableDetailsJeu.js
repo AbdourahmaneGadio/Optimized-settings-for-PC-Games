@@ -80,9 +80,9 @@ export default function TableDetailsJeu({ gameSelected }) {
     }
 
     return (
-      <View style={styles.tableSettingsContainer}>
+      <ScrollView style={styles.tableSettingsContainer}>
         {actualLines}
-      </View>
+      </ScrollView>
     );
   };
 
@@ -269,7 +269,7 @@ export default function TableDetailsJeu({ gameSelected }) {
         dataLoaded.gameData == null &&
         buttonSettingsClicked && (
           <View>
-            <Text style={styles.titleText}>
+            <Text style={styles.numberSettingsText}>
               Number of settings : {numberSettings}
             </Text>
 
@@ -313,6 +313,12 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontFamily: "Quicksand",
   },
+  numberSettingsText: {
+    color: "red",
+    textAlign: "center",
+    fontFamily: "Quicksand",
+    fontWeight: "bold",
+  },
   singleButtonContainer: {
     justifyContent: "center",
     alignContent: "center",
@@ -324,7 +330,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "flex-start",
-    marginTop: 20,
+    alignContent: "center",
+    alignSelf: "center",
+    marginTop: 50,
     maxHeight: 100,
   },
   button: {
@@ -334,7 +342,7 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   buttonSubmit: {
-    backgroundColor: "green",
+    backgroundColor: "#C1ECBA",
     borderRadius: 20,
     padding: 15,
     margin: 5,
@@ -342,6 +350,8 @@ const styles = StyleSheet.create({
   tableSettingsContainer: {
     flex: 1,
     flexDirection: "column",
+    maxHeight: 350,
+    marginTop: 20,
   },
   multiplesSettingsLines: {
     marginTop: 20,
