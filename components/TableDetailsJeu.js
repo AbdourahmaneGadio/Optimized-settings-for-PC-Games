@@ -4,6 +4,7 @@ import {
   Platform,
   Pressable,
   SafeAreaView,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -78,7 +79,11 @@ export default function TableDetailsJeu({ gameSelected }) {
       );
     }
 
-    return <View style={styles}>{actualLines}</View>;
+    return (
+      <View style={styles.tableSettingsContainer}>
+        {actualLines}
+      </View>
+    );
   };
 
   {
@@ -314,9 +319,6 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     marginTop: 15,
   },
-  multiplesSettingsLines: {
-    marginTop: 20,
-  },
   multiplesButtonContainer: {
     flex: 1,
     flexDirection: "row",
@@ -336,5 +338,12 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 15,
     margin: 5,
+  },
+  tableSettingsContainer: {
+    flex: 1,
+    flexDirection: "column",
+  },
+  multiplesSettingsLines: {
+    marginTop: 20,
   },
 });
