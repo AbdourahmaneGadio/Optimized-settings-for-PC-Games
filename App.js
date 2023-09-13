@@ -1,16 +1,12 @@
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { SafeAreaView, StyleSheet, Text, View, ScrollView } from "react-native";
 import LoadingIcon from "./components/LoadingIcon";
 import Results from "./components/Results";
 import SearchBar from "./components/SearchBar";
 import TableDetailsJeu from "./components/TableDetailsJeu";
 
-import { RAWG_API_KEY } from "@env";
-
 import { useFonts } from "expo-font";
-
-import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -57,6 +53,7 @@ export default function App() {
       .catch(() => {
         setGameResults("error");
       });
+
     setSearchTerm("");
     setIsLoading(false);
   };
@@ -97,40 +94,38 @@ export default function App() {
   };
 
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <View style={styles.container}>
-        {/* Titre du site/appli */}
-        <Text style={{ fontFamily: "Quicksand" }}>
-          Optimized settings for PC Games
-        </Text>
+    <SafeAreaView style={styles.container}>
+      {/* Titre du site/appli */}
+      <Text style={{ fontFamily: "Quicksand" }}>
+        Optimized settings for PC Games
+      </Text>
 
-        {/* Barre de recherche */}
-        <SearchBar
-          onPress={handleSearch}
-          onChangeText={handleKeyboardEntry}
-          searchActive={searchActive}
-          onPressReset={resetSearch}
-        />
+      {/* Barre de recherche */}
+      <SearchBar
+        onPress={handleSearch}
+        onChangeText={handleKeyboardEntry}
+        searchActive={searchActive}
+        onPressReset={resetSearch}
+      />
 
-        {/* Résultats */}
-        {/* Chargement */}
-        {isLoading && searchActive && <LoadingIcon />}
+      {/* Résultats */}
+      {/* Chargement */}
+      {isLoading && searchActive && <LoadingIcon />}
 
-        {/* Si erreur lors du fetch */}
-        {searchActive && gameResults && gameResults == "error" ? (
-          <Text>Something wrong happened, try later.</Text>
-        ) : (
-          gameResults.length > 0 && (
-            <Results gameResults={gameResults} onPress={handleGameSelected} />
-          )
-        )}
+      {/* Si erreur lors du fetch */}
+      {searchActive && gameResults && gameResults == "error" ? (
+        <Text>Something wrong happened, try later.</Text>
+      ) : (
+        gameResults.length > 0 && (
+          <Results gameResults={gameResults} onPress={handleGameSelected} />
+        )
+      )}
 
-        {/* Les détails du jeu choisi parmi les résultats */}
-        {gameSelected && <TableDetailsJeu gameSelected={gameSelected} />}
+      {/* Les détails du jeu choisi parmi les résultats */}
+      {gameSelected && <TableDetailsJeu gameSelected={gameSelected} />}
 
-        <StatusBar style="auto" />
-      </View>
-    </GestureHandlerRootView>
+      <StatusBar style="auto" />
+    </SafeAreaView>
   );
 }
 
@@ -140,5 +135,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#D2CACA",
     alignItems: "center",
     justifyContent: "center",
+  },
+  scrollView: {
+    marginHorizontal: 20,
   },
 });
