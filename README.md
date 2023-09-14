@@ -19,8 +19,11 @@ Happy gaming!
 - Dark and light theme
 - Cross platform
 
+## Example
 
-## Usage and/or installation
+https://github.com/AbdourahmaneGadio/Optimized-settings-for-PC-Games/assets/91066652/59e4e414-4a93-4ec4-a4d5-b278f009b902
+
+## Installation
 
 ### Web
 
@@ -30,16 +33,16 @@ Visit this website : [Optimized Settings for PC Games - Web version](https://abd
 
 You can install the latest version either by :
 
-## Android Only
+---
+
+#### Android Only
 - Downloading the apk from the releases: [Optimized Settings for PC Games with APK](https://github.com/AbdourahmaneGadio/Optimized-settings-for-PC-Games/releases/latest/download/optimized-settings-for-pc-games.apk)
 
-## Android and iOS
+#### Android and iOS
 
 - Installing Expo go on your mobile, then go to this link : [Optimized Settings for PC Games - Expo Version](https://expo.dev/@guer7_jdhf/optimized-setttings-for-pc-games) and scan the QR Code
-    
-## Example
 
-https://github.com/AbdourahmaneGadio/Optimized-settings-for-PC-Games/assets/91066652/59e4e414-4a93-4ec4-a4d5-b278f009b902
+---
 
 ## Author
 
