@@ -33,9 +33,9 @@ You can install the latest version either by :
 ## Android Only
 - Downloading the apk from the releases: [Optimized Settings for PC Games with APK](https://github.com/AbdourahmaneGadio/Optimized-settings-for-PC-Games/releases/latest/download/optimized-settings-for-pc-games.apk)
 
-## iOS
+## Android and iOS
 
-Work in progress...
+- Installing Expo go on your mobile, then go to this link : [Optimized Settings for PC Games - Expo Version](https://expo.dev/@guer7_jdhf/optimized-setttings-for-pc-games) and scan the QR Code
     
 ## Screenshots
 
