@@ -37,9 +37,9 @@ You can install the latest version either by :
 
 - Installing Expo go on your mobile, then go to this link : [Optimized Settings for PC Games - Expo Version](https://expo.dev/@guer7_jdhf/optimized-setttings-for-pc-games) and scan the QR Code
     
-## Screenshots
+## Example
 
-![Screenshot 2023-09-08 at 16-21-21 expo-app](https://github.com/AbdourahmaneGadio/Optimized-settings-for-PC-Games/assets/91066652/8411deb8-2b25-45c6-b6d7-98b185c99ede)
+https://github.com/AbdourahmaneGadio/Optimized-settings-for-PC-Games/assets/91066652/59e4e414-4a93-4ec4-a4d5-b278f009b902
 
 ## Author
 
