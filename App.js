@@ -1,12 +1,14 @@
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
-import { SafeAreaView, StyleSheet, Text, View, ScrollView } from "react-native";
+import { SafeAreaView, StyleSheet, Text } from "react-native";
 import LoadingIcon from "./components/LoadingIcon";
 import Results from "./components/Results";
 import SearchBar from "./components/SearchBar";
 import TableDetailsJeu from "./components/TableDetailsJeu";
 
 import { useFonts } from "expo-font";
+
+import Footer from "./components/Footer";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -107,7 +109,6 @@ export default function App() {
         searchActive={searchActive}
         onPressReset={resetSearch}
       />
-
       {/* Résultats */}
       {/* Chargement */}
       {isLoading && searchActive && <LoadingIcon />}
@@ -124,6 +125,7 @@ export default function App() {
       {/* Les détails du jeu choisi parmi les résultats */}
       {gameSelected && <TableDetailsJeu gameSelected={gameSelected} />}
 
+      <Footer />
       <StatusBar style="auto" />
     </SafeAreaView>
   );
