@@ -1,0 +1,15 @@
+{
+  "Game": "Marvel's Spider-Man: Miles Morales",
+  "Anti-Aliasing": "TAA or DLAA if you have a NVIDIA GPU",
+  "Texture Filtering": "8x",
+  "Shadow Quality": "Medium or High",
+  "Ambient Occlusion": "SSAO",
+  "Screen Space Reflection": "On",
+  "RT Reflection": "High Resolution / High Geometry",
+  "RT Shadows": "Off",
+  "Level of Detail": "High",
+  "Traffic Density": "Very low",
+  "Crowd Density": "Very low",
+  "Hair Quality": "Medium",
+  "Weather Particle Quality": "Medium"
+}
