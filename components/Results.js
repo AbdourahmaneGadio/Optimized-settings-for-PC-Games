@@ -6,7 +6,7 @@ import {
   StyleSheet,
   View,
 } from "react-native";
-import ZoneJeuIndividuel from "./ZoneJeuIndividuel";
+import SingleGameZone from "./SingleGameZone";
 
 const Results = ({ gameResults, onPress }) => {
   return (
@@ -15,7 +15,7 @@ const Results = ({ gameResults, onPress }) => {
         <FlatList
           data={gameResults}
           renderItem={({ item }) => (
-            <ZoneJeuIndividuel actualGame={item} onPress={onPress} />
+            <SingleGameZone actualGame={item} onPress={onPress} />
           )}
         />
       </SafeAreaView>

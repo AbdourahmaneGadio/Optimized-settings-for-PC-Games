@@ -21,8 +21,10 @@ export default function App() {
   const [gameResults, setGameResults] = useState([]);
   const [gameSelected, setGameSelected] = useState();
 
+  const RAWG_API_KEY = process.env.RAWG_API_KEY;
+
   {
-    /* On recherche le jeu avec l'API de RAWG */
+    /* We search the game with RAWG's API */
   }
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -30,20 +32,17 @@ export default function App() {
     setIsLoading(true);
 
     {
-      /* On rajoute des tirets dans le terme recherché pour la recherche avec l'api */
-    }
-    {
-      /*  Ex: Psychonauts 2 devient psychonauts-2 */
+      /*  Ex: Psychonauts 2 become psychonauts-2 */
     }
     let termeFinal = searchTerm.split(" ").join("-").toLowerCase();
 
     {
-      /* Par défaut, on considère qu'on a aucun résultat */
+      /* No results by default */
     }
     setGameResults([]);
 
     {
-      /* On récupère les résultats */
+      /* We get the results */
     }
     await fetch(
       `https://rawg.io/api/games?search=${termeFinal}&parent_platforms=1&key=${RAWG_API_KEY}`
@@ -61,7 +60,7 @@ export default function App() {
   };
 
   {
-    /* Si l'on choisit parmi les résultats */
+    /* If we choose a game among the results */
   }
   const handleGameSelected = (e) => {
     setGameSelected();
@@ -74,19 +73,19 @@ export default function App() {
   };
 
   {
-    /* Dès que l'on tape sur la barre de recherche */
+    /* When we click on the search bar */
   }
   const handleKeyboardEntry = (e) => {
     setSearchActive(true);
     {
-      /* On enregistre le terme recherché */
+      /* We register the text */
     }
     setSearchTerm(e);
     setGameSelected();
   };
 
   {
-    /* Si on veut remettre à zéro le nom du jeu */
+    /* If we reset the search */
   }
   const resetSearch = () => {
     setSearchActive(false);
@@ -97,23 +96,23 @@ export default function App() {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* Titre du site/appli */}
+      {/* Title */}
       <Text style={{ fontFamily: "Quicksand" }}>
         Optimized settings for PC Games
       </Text>
 
-      {/* Barre de recherche */}
+      {/* Search bar */}
       <SearchBar
         onPress={handleSearch}
         onChangeText={handleKeyboardEntry}
         searchActive={searchActive}
         onPressReset={resetSearch}
       />
-      {/* Résultats */}
-      {/* Chargement */}
+      {/* Results */}
+      {/* Loading */}
       {isLoading && searchActive && <LoadingIcon />}
 
-      {/* Si erreur lors du fetch */}
+      {/* If error while fetching */}
       {searchActive && gameResults && gameResults == "error" ? (
         <Text>Something wrong happened, try later.</Text>
       ) : (
@@ -122,7 +121,7 @@ export default function App() {
         )
       )}
 
-      {/* Les détails du jeu choisi parmi les résultats */}
+      {/* Game's details */}
       {gameSelected && <TableDetailsJeu gameSelected={gameSelected} />}
 
       <Footer />

@@ -1,17 +1,14 @@
-import { RAWG_API_KEY } from "@env";
 import { AntDesign } from "@expo/vector-icons";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   ImageBackground,
-  Platform,
   Pressable,
   StyleSheet,
   Text,
   View,
 } from "react-native";
 
-export default function ZoneJeuIndividuel({ actualGame, onPress }) {
-  
+export default function SingleGameZone({ actualGame, onPress }) {
   const myButton = (
     <AntDesign
       name="play"
@@ -25,7 +22,7 @@ export default function ZoneJeuIndividuel({ actualGame, onPress }) {
 
   const handleVideoPress = () => {
     setShowVideo(true);
-    alert('video');
+    alert("video");
   };
 
   return (

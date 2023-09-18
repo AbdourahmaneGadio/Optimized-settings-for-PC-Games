@@ -216,10 +216,10 @@ export default function TableDetailsJeu({ gameSelected }) {
 
   return (
     <SafeAreaView>
-      {/* Chargement */}
+      {/* Loading */}
       {dataLoaded.isLoading && <LoadingIcon />}
 
-      {/* La table avec les résultats */}
+      {/* Table with results */}
       {!dataLoaded.isLoading && dataLoaded.gameData != null && (
         <View>
           <Table
@@ -247,7 +247,7 @@ export default function TableDetailsJeu({ gameSelected }) {
         </View>
       )}
 
-      {/* Si aucun paramètre existe */}
+      {/* If no settings are found */}
       {!dataLoaded.isLoading &&
         dataLoaded.gameData == null &&
         !buttonSettingsClicked && (
