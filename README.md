@@ -44,6 +44,49 @@ You can install the latest version either by :
 
 ---
 
+## Want to contribute ?
+
+Create a json file in the appropriate directory. 
+
+It must start with the first letter of the game you want to add.
+
+```
+Example: If you want to add the settings for Marvel's Spider-Man Miles Morales, you need to add them into the folder "M"
+```
+
+Then, write it like this template :
+
+```json
+{
+  "Game": "Game's name",
+  "Settings One": "What ever value",
+  "Settings Two": "Another value",
+  ...
+}
+```
+
+With Marvel's Spider-Man Miles Morales, we have :
+
+```json
+{
+  "Game": "Marvel's Spider-Man: Miles Morales",
+  "Anti-Aliasing": "TAA or DLAA if you have a NVIDIA GPU",
+  "Texture Filtering": "8x",
+  "Shadow Quality": "Medium or High",
+  "Ambient Occlusion": "SSAO",
+  "Screen Space Reflection": "On",
+  "RT Reflection": "High Resolution / High Geometry",
+  "RT Shadows": "Off",
+  "Level of Detail": "High",
+  "Traffic Density": "Very low",
+  "Crowd Density": "Very low",
+  "Hair Quality": "Medium",
+  "Weather Particle Quality": "Medium"
+}
+```
+
+---
+
 ## Author
 
 - [@AbdourahmaneGadio](https://github.com/AbdourahmaneGadio)
