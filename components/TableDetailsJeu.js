@@ -94,9 +94,28 @@ export default function TableDetailsJeu({ gameSelected }) {
   {
     /* Show a form to add settings for any game */
   }
-  const onPressButton = () => {
-    setButtonSettingsClicked(true);
-    setNumberSettings(1);
+  const onPressButton = async () => {
+    let isAdmin = await checkAdminPassword();
+
+    if (isAdmin) {
+      setButtonSettingsClicked(true);
+      setNumberSettings(1);
+    }
+  };
+
+  const checkAdminPassword = async () => {
+    let adminPassword = "";
+    if (Platform.OS == "web") {
+      adminPassword = prompt("Please enter your name", "secret password");
+      if (adminPassword == process.env.ADMIN_PASSWORD) {
+        return true;
+      } else {
+        window.alert('Wrong password... :-(');
+      }
+    } else {
+      Alert.alert("You need to be on PC");
+    }
+    return false;
   };
 
   {
