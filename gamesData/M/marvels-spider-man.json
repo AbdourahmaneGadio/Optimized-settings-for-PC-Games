@@ -1,0 +1,13 @@
+{
+  "Game": "Marvel's Spider-Man",
+  "Anti-Aliasing": "TAA or DLAA if you have a NVIDIA GPU",
+  "Texture Filtering": "16x",
+  "Shadow Quality": "Medium or High",
+  "Ambient Occlusion": "SSAO",
+  "Screen Space Reflection": "On",
+  "Level of Detail": "High",
+  "Traffic Density": "Low",
+  "Crowd Density": "Low",
+  "Hair Quality": "Medium",
+  "Weather Particle Quality": "Low"
+}

@@ -1,0 +1,11 @@
+{
+  "Game": "Psychonauts 2",
+  "Anti-Aliasing": "Temporal",
+  "Detail Distance": "Very High",
+  "Textures": "Very High",
+  "Lighting": "Very Low",
+  "Shadows": "Medium",
+  "Ambient Occlusion": "Very Low",
+  "Reflections": "Low",
+  "Post-Process": "Medium"
+}
