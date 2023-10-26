@@ -20,6 +20,7 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [gameResults, setGameResults] = useState([]);
   const [gameSelected, setGameSelected] = useState();
+  const [appBGColor, setAppBGColor] = useState(false);
 
   const RAWG_API_KEY = process.env.RAWG_API_KEY;
 
@@ -94,8 +95,17 @@ export default function App() {
     setGameSelected();
   };
 
+  const handleMouseEnter = (img) => {
+    setAppBGColor(img)
+  }
+
+  const handleMouseLeave = () => {
+    setAppBGColor(false)
+  }
+
   return (
-    <SafeAreaView style={styles.container}>
+   
+    <SafeAreaView style= {appBGColor ? styles.containerGameHover : styles.containerNoGameHover}>
       {/* Title */}
       <Text style={{ fontFamily: "Quicksand" }}>
         Optimized settings for PC Games
@@ -117,7 +127,7 @@ export default function App() {
         <Text>Something wrong happened, try later.</Text>
       ) : (
         gameResults.length > 0 && (
-          <Results gameResults={gameResults} onPress={handleGameSelected} />
+          <Results gameResults={gameResults} onPress={handleGameSelected} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} />
         )
       )}
 
@@ -131,9 +141,15 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  containerNoGameHover: {
     flex: 1,
     backgroundColor: "#D2CACA",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  containerGameHover: {
+    flex: 1,
+    backgroundColor: "red",
     alignItems: "center",
     justifyContent: "center",
   },
