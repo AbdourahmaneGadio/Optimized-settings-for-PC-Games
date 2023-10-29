@@ -8,7 +8,7 @@ import {
   View,
 } from "react-native";
 
-export default function SingleGameZone({ actualGame, onMouseEnter, onMouseLeave }) {
+export default function SingleGameZone({ actualGame, onPress, onMouseEnter, onMouseLeave }) {
 
   return (
     <View onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>

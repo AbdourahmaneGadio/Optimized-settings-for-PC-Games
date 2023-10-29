@@ -7,6 +7,7 @@ import SearchBar from "./components/SearchBar";
 import TableDetailsJeu from "./components/TableDetailsJeu";
 
 import { useFonts } from "expo-font";
+import { extractColors } from 'extract-colors';
 
 import Footer from "./components/Footer";
 
@@ -64,6 +65,7 @@ export default function App() {
     /* If we choose a game among the results */
   }
   const handleGameSelected = (e) => {
+    setAppBGColor(false);
     setGameSelected();
     setSearchActive(false);
     setGameResults([]);
@@ -96,7 +98,16 @@ export default function App() {
   };
 
   const handleMouseEnter = (img) => {
-    setAppBGColor(img)
+    // var backgroundColors = ""
+    // extractColors(img, { crossOrigin: "anonymous" })
+    //   .then((results) => {
+    //     results.map((imgData) => {
+    //       backgroundColors = imgData.red + "," + imgData.green + "," + imgData.blue
+    //     })
+    //     setAppBGColor(backgroundColors)
+    //   })
+    //   .catch(console.error)
+
   }
 
   const handleMouseLeave = () => {
@@ -104,13 +115,20 @@ export default function App() {
   }
 
   return (
-   
-    <SafeAreaView style= {appBGColor ? styles.containerGameHover : styles.containerNoGameHover}>
+
+    <SafeAreaView style={appBGColor ? {
+      flex: 1,
+      background: `linear-gradient(rgba(${appBGColor},0.5),transparent)`,
+      backgroundRepeat: "repeat-y",
+      backgroundSize: "contain",
+      opacity: 0.8,
+      alignItems: "center",
+      justifyContent: "center",
+    } : styles.container}>
       {/* Title */}
       <Text style={{ fontFamily: "Quicksand" }}>
         Optimized settings for PC Games
       </Text>
-
       {/* Search bar */}
       <SearchBar
         onPress={handleSearch}
@@ -141,15 +159,9 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  containerNoGameHover: {
+  container: {
     flex: 1,
     backgroundColor: "#D2CACA",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  containerGameHover: {
-    flex: 1,
-    backgroundColor: "red",
     alignItems: "center",
     justifyContent: "center",
   },
