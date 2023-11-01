@@ -7,6 +7,7 @@ import SearchBar from "./components/SearchBar";
 import TableDetailsJeu from "./components/TableDetailsJeu";
 
 import { useFonts } from "expo-font";
+import { extractColors } from 'extract-colors';
 
 import Footer from "./components/Footer";
 
@@ -20,6 +21,7 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [gameResults, setGameResults] = useState([]);
   const [gameSelected, setGameSelected] = useState();
+  const [appBGColor, setAppBGColor] = useState(false);
 
   const RAWG_API_KEY = process.env.RAWG_API_KEY;
 
@@ -63,6 +65,7 @@ export default function App() {
     /* If we choose a game among the results */
   }
   const handleGameSelected = (e) => {
+    setAppBGColor(false);
     setGameSelected();
     setSearchActive(false);
     setGameResults([]);
@@ -94,13 +97,38 @@ export default function App() {
     setGameSelected();
   };
 
+  const handleMouseEnter = (img) => {
+    // var backgroundColors = ""
+    // extractColors(img, { crossOrigin: "anonymous" })
+    //   .then((results) => {
+    //     results.map((imgData) => {
+    //       backgroundColors = imgData.red + "," + imgData.green + "," + imgData.blue
+    //     })
+    //     setAppBGColor(backgroundColors)
+    //   })
+    //   .catch(console.error)
+
+  }
+
+  const handleMouseLeave = () => {
+    setAppBGColor(false)
+  }
+
   return (
-    <SafeAreaView style={styles.container}>
+
+    <SafeAreaView style={appBGColor ? {
+      flex: 1,
+      background: `linear-gradient(rgba(${appBGColor},0.5),transparent)`,
+      backgroundRepeat: "repeat-y",
+      backgroundSize: "contain",
+      opacity: 0.8,
+      alignItems: "center",
+      justifyContent: "center",
+    } : styles.container}>
       {/* Title */}
       <Text style={{ fontFamily: "Quicksand" }}>
         Optimized settings for PC Games
       </Text>
-
       {/* Search bar */}
       <SearchBar
         onPress={handleSearch}
@@ -117,7 +145,7 @@ export default function App() {
         <Text>Something wrong happened, try later.</Text>
       ) : (
         gameResults.length > 0 && (
-          <Results gameResults={gameResults} onPress={handleGameSelected} />
+          <Results gameResults={gameResults} onPress={handleGameSelected} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} />
         )
       )}
 

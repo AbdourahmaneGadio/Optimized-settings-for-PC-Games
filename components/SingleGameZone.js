@@ -8,25 +8,10 @@ import {
   View,
 } from "react-native";
 
-export default function SingleGameZone({ actualGame, onPress }) {
-  const myButton = (
-    <AntDesign
-      name="play"
-      size={32}
-      style={styles.playButton}
-      onPress={handleVideoPress}
-    />
-  );
-
-  const [showVideo, setShowVideo] = useState(false);
-
-  const handleVideoPress = () => {
-    setShowVideo(true);
-    alert("video");
-  };
+export default function SingleGameZone({ actualGame, onPress, onMouseEnter, onMouseLeave }) {
 
   return (
-    <View>
+    <View onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
       <Pressable onPress={() => onPress(actualGame.slug)} key={actualGame.id}>
         <ImageBackground
           source={{ uri: actualGame.background_image }}
@@ -53,7 +38,7 @@ export default function SingleGameZone({ actualGame, onPress }) {
                       alignItems: "center",
                     }}
                   >
-                    {myButton}
+                   
                   </ImageBackground>
                 </View>
               </View>
