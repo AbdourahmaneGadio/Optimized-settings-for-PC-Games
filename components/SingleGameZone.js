@@ -8,10 +8,10 @@ import {
   View,
 } from "react-native";
 
-export default function SingleGameZone({ actualGame, onPress, onMouseEnter, onMouseLeave }) {
+export default function SingleGameZone({ actualGame, onPress}) {
 
   return (
-    <View onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+    <View>
       <Pressable onPress={() => onPress(actualGame.slug)} key={actualGame.id}>
         <ImageBackground
           source={{ uri: actualGame.background_image }}

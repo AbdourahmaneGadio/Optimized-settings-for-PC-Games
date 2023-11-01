@@ -8,14 +8,14 @@ import {
 } from "react-native";
 import SingleGameZone from "./SingleGameZone";
 
-const Results = ({ gameResults, onPress, onMouseEnter, onMouseLeave}) => {
+const Results = ({ gameResults, onPress}) => {
   return (
     <View>
       <SafeAreaView style={styles.container}>
         <FlatList
           data={gameResults}
           renderItem={({ item }) => (
-            <SingleGameZone actualGame={item} onPress={onPress} onMouseEnter={() => onMouseEnter(item.background_image)} onMouseLeave={onMouseLeave} />
+            <SingleGameZone actualGame={item} onPress={onPress} />
           )}
         />
       </SafeAreaView>
