@@ -50,9 +50,10 @@ Create a json file in the appropriate directory.
 
 It must start with the first letter of the game you want to add.
 
-```
-Example: If you want to add the settings for Marvel's Spider-Man Miles Morales, you need to add them into the folder "M"
-```
+If you want to add the settings for Marvel's Spider-Man Miles Morales, you need to add them into the folder "M".
+
+Then, your json file MUST be named as required by the naming convention (Enter your game's name here : [Name to slug converter](https://slugify.online/))
+
 
 Then, write it like this template :
 

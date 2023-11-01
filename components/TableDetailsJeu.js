@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import {
   Alert,
+  Linking,
   Platform,
   Pressable,
   SafeAreaView,
@@ -95,10 +96,11 @@ export default function TableDetailsJeu({ gameSelected }) {
     /* Show a form to add settings for any game */
   }
   const onPressButton = async () => {
-    alert('test');
+    Linking.openURL(
+      "https://github.com/AbdourahmaneGadio/Optimized-settings-for-PC-Games#want-to-contribute-"
+    );
   };
 
-  
   {
     /* Add settings line */
   }
