@@ -94,6 +94,14 @@ With Marvel's Spider-Man Miles Morales, we have :
 }
 ```
 
+### Games with Remastered Version and/or DLC
+
+If you see the same game with an other title because it contains DLCs, AND do not differ in settings (example: Marvel's Spider-Man and Marvel's Spider-Man Remastered), you need you create another json file who is named after the new game's version.
+
+For this case, you will have two files : "**Marvel's Spider-Man**".json and "**Marvel's Spider-Man Remastered**".json, containing the exact settings.
+
+In the case where the Remastered version and/or DLC need other settings because of the game's demands (example: **Cyberpunk 2077** and **Cyberpunk 2077: Phantom Liberty**), you need to enter for both of the json files their specific settings.
+
 ---
 
 ## Author
