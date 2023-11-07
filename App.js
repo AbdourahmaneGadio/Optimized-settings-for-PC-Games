@@ -68,7 +68,6 @@ export default function App() {
     setGameResults([]);
 
     let gameSelectedName = e;
-
     setGameSelected(gameSelectedName);
   };
 

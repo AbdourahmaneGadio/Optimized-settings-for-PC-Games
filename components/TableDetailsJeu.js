@@ -9,7 +9,7 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  View,
+  View
 } from "react-native";
 import { Col, Table, TableWrapper } from "react-native-reanimated-table";
 import LoadingIcon from "./LoadingIcon";
@@ -21,6 +21,8 @@ export default function TableDetailsJeu({ gameSelected }) {
     settingsOptions: [],
     isLoading: false,
   });
+
+  let actualLines = [];
 
   const [buttonSettingsClicked, setButtonSettingsClicked] = useState(false);
 
@@ -52,8 +54,10 @@ export default function TableDetailsJeu({ gameSelected }) {
   };
 
   const tableForSettings = () => {
-    let actualLines = [];
+
     let indice = 0;
+
+    actualLines = []
 
     for (indice = 0; indice < numberSettings; indice++) {
       actualLines.push(
@@ -90,12 +94,13 @@ export default function TableDetailsJeu({ gameSelected }) {
   {
     /* Number of settings we want to add */
   }
-  const [numberSettings, setNumberSettings] = useState(0);
+  const [numberSettings, setNumberSettings] = useState(1);
 
   {
     /* Show a form to add settings for any game */
   }
   const onPressButton = async () => {
+    setButtonSettingsClicked(true)
     Linking.openURL(
       "https://github.com/AbdourahmaneGadio/Optimized-settings-for-PC-Games#want-to-contribute-"
     );
@@ -127,19 +132,29 @@ export default function TableDetailsJeu({ gameSelected }) {
     /* Submit settings */
   }
   const submitSettings = () => {
-    let settingsFinalList = "";
+    let settingsFinalList = `Game: ${gameSelected}\n\n`;
 
     let settingsIndex = 0;
 
+    let error = 0; // 0 if no error, other number if errors
+
     for (settingsIndex = 0; settingsIndex < numberSettings; settingsIndex++) {
-      settingsFinalList += `${writtenSettingsKeys[settingsIndex]} : ${writtenSettingsValues[settingsIndex]}\n\n`;
+      if (writtenSettingsKeys[settingsIndex] == undefined || writtenSettingsValues[settingsIndex] == undefined) {
+        alert("Fill all the settings !");
+        error += 1
+      }
+      else {
+        settingsFinalList += `${writtenSettingsKeys[settingsIndex]} : ${writtenSettingsValues[settingsIndex]}\n\n`;
+      }
     }
 
-    if (Platform.OS == "web") {
+    if (Platform.OS == "web" && error == 0) {
       if (
         confirm(`Are you sure about your settings ?\n\n${settingsFinalList}`)
       ) {
-        alert("Your settings have been submitted !");
+        alert("Your settings have been submitted ! ( -- No, they don't, it's still WIP :-( -- )");
+        setButtonSettingsClicked(false)
+        setDataLoaded({ gameData: "" })
       }
     } else {
       Alert.alert(
@@ -222,7 +237,7 @@ export default function TableDetailsJeu({ gameSelected }) {
       {dataLoaded.isLoading && <LoadingIcon />}
 
       {/* Table with results */}
-      {!dataLoaded.isLoading && dataLoaded.gameData != null && (
+      {!dataLoaded.isLoading && dataLoaded.gameData != null && dataLoaded.gameData != "" && (
         <View>
           <Table
             style={{ flexDirection: "row" }}

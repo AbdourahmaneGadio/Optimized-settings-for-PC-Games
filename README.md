@@ -46,16 +46,24 @@ You can install the latest version either by :
 
 ## Want to contribute ?
 
-Create a json file in the appropriate directory. 
+Either add your settings directly from the website (to be released...), or create a json file in the appropriate directory. 
 
 It must start with the first letter of the game you want to add.
+
+---
+### Example: 
 
 If you want to add the settings for Marvel's Spider-Man Miles Morales, you need to add them into the folder "M".
 
 Then, your json file MUST be named as required by the naming convention (Enter your game's name here : [Name to slug converter](https://slugify.online/))
 
+After you used this converter, "**Marvel's Spider-Man Miles Morales**" should become "**marvels-spider-man-miles-morales**".
 
-Then, write it like this template :
+So, your file MUST be named "**marvels-spider-man-miles-morales**.json".
+
+Otherwise, your settings will not be recognized.
+
+Then, write your settings in your json file like this template :
 
 ```json
 {
