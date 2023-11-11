@@ -1,0 +1,19 @@
+{
+  "Game": "Assassin's Creed Origins - The Hidden Ones",
+  "Dynamic Resolution": "Off",
+  "Anti-Aliasing": "Low",
+  "Shadows": "Very Low",
+  "Environment Details": "Medium",
+  "Texture Detail": "High",
+  "Tesselation": "Very High",
+  "Terrain": "High",
+  "Clutter": "Medium",
+  "Fog": "Medium",
+  "Water": "Medium",
+  "Screen Space Reflections": "High",
+  "Volumetric Clouds": "Off",
+  "Texture Detail for Characters": "High",
+  "Character": "Very Low",
+  "Ambient Occlusion": "High",
+  "Depth of Field": "Off"
+}
