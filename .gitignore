@@ -140,7 +140,7 @@ docs/pages/versions/*/react-native/*.diff
 /ios/Pods
 
 # Packages
-package.json
+#package.json
 
 # Environement
 .env
