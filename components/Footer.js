@@ -52,13 +52,12 @@ export default function Footer() {
           }
         >
           BenchmarKing
-        </Text>,{" "}
+        </Text>
+        ,{" "}
         <Text
           style={{ color: "blue" }}
           onPress={() =>
-            Linking.openURL(
-              "https://www.reddit.com/r/OptimizedGaming/"
-            )
+            Linking.openURL("https://www.reddit.com/r/OptimizedGaming/")
           }
         >
           OptimizedGaming's Subreddit

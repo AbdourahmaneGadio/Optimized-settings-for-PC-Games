@@ -20,7 +20,7 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [gameResults, setGameResults] = useState([]);
   const [gameSelected, setGameSelected] = useState();
-  
+
   const RAWG_API_KEY = process.env.RAWG_API_KEY;
 
   {
@@ -91,7 +91,6 @@ export default function App() {
   };
 
   return (
-
     <SafeAreaView style={styles.container}>
       {/* Title */}
       <Text style={{ fontFamily: "Quicksand" }}>

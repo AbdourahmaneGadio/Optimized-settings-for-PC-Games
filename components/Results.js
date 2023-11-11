@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import SingleGameZone from "./SingleGameZone";
 
-const Results = ({ gameResults, onPress}) => {
+const Results = ({ gameResults, onPress }) => {
   return (
     <View>
       <SafeAreaView style={styles.container}>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import {
   Alert,
+  ImageBackground,
   Linking,
   Platform,
   Pressable,
@@ -8,8 +9,8 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  TextInput,ImageBackground,
-  View
+  TextInput,
+  View,
 } from "react-native";
 import { Col, Table, TableWrapper } from "react-native-reanimated-table";
 import LoadingIcon from "./LoadingIcon";
@@ -54,10 +55,9 @@ export default function TableDetailsJeu({ gameSelected }) {
   };
 
   const tableForSettings = () => {
-
     let indice = 0;
 
-    actualLines = []
+    actualLines = [];
 
     for (indice = 0; indice < numberSettings; indice++) {
       actualLines.push(
@@ -100,7 +100,7 @@ export default function TableDetailsJeu({ gameSelected }) {
     /* Show a form to add settings for any game */
   }
   const onPressButton = async () => {
-    setButtonSettingsClicked(true)
+    setButtonSettingsClicked(true);
     Linking.openURL(
       "https://github.com/AbdourahmaneGadio/Optimized-settings-for-PC-Games#want-to-contribute-"
     );
@@ -139,11 +139,13 @@ export default function TableDetailsJeu({ gameSelected }) {
     let error = 0; // 0 if no error, other number if errors
 
     for (settingsIndex = 0; settingsIndex < numberSettings; settingsIndex++) {
-      if (writtenSettingsKeys[settingsIndex] == undefined || writtenSettingsValues[settingsIndex] == undefined) {
+      if (
+        writtenSettingsKeys[settingsIndex] == undefined ||
+        writtenSettingsValues[settingsIndex] == undefined
+      ) {
         alert("Fill all the settings !");
-        error += 1
-      }
-      else {
+        error += 1;
+      } else {
         settingsFinalList += `${writtenSettingsKeys[settingsIndex]} : ${writtenSettingsValues[settingsIndex]}\n\n`;
       }
     }
@@ -152,9 +154,11 @@ export default function TableDetailsJeu({ gameSelected }) {
       if (
         confirm(`Are you sure about your settings ?\n\n${settingsFinalList}`)
       ) {
-        alert("Your settings have been submitted ! ( -- No, they don't, it's still WIP :-( -- )");
-        setButtonSettingsClicked(false)
-        setDataLoaded({ gameData: "" })
+        alert(
+          "Your settings have been submitted ! ( -- No, they don't, it's still WIP :-( -- )"
+        );
+        setButtonSettingsClicked(false);
+        setDataLoaded({ gameData: "" });
       }
     } else {
       Alert.alert(
@@ -252,19 +256,19 @@ export default function TableDetailsJeu({ gameSelected }) {
               blurRadius={5}
               imageStyle={{ borderRadius: 30 }}
             >
-                <View style={styles.imageContainer}>
-                  <ImageBackground
-                    source={{ uri: gameSelected.background_image }}
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      flex: 1,
-                      resizeMode: "cover",
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                  ></ImageBackground>
-                </View>
+              <View style={styles.imageContainer}>
+                <ImageBackground
+                  source={{ uri: gameSelected.background_image }}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    flex: 1,
+                    resizeMode: "cover",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                ></ImageBackground>
+              </View>
               <Table
                 style={{ flexDirection: "row" }}
                 borderStyle={{ borderWidth: 1 }}

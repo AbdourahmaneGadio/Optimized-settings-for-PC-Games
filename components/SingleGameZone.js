@@ -7,8 +7,7 @@ import {
   View,
 } from "react-native";
 
-export default function SingleGameZone({ actualGame, onPress}) {
-
+export default function SingleGameZone({ actualGame, onPress }) {
   return (
     <View>
       <Pressable onPress={() => onPress(actualGame)} key={actualGame.id}>
@@ -24,21 +23,19 @@ export default function SingleGameZone({ actualGame, onPress}) {
               <Text style={{ fontFamily: "Quicksand" }}>{actualGame.name}</Text>
             </View>
             <View>
-                <View style={styles.imageContainer}>
-                  <ImageBackground
-                    source={{ uri: actualGame.background_image }}
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      flex: 1,
-                      resizeMode: "cover",
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                  >
-                   
-                  </ImageBackground>
-                </View>
+              <View style={styles.imageContainer}>
+                <ImageBackground
+                  source={{ uri: actualGame.background_image }}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    flex: 1,
+                    resizeMode: "cover",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                ></ImageBackground>
+              </View>
             </View>
           </View>
         </ImageBackground>
