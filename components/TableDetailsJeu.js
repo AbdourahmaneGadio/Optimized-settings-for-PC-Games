@@ -8,7 +8,7 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  TextInput,
+  TextInput,ImageBackground,
   View
 } from "react-native";
 import { Col, Table, TableWrapper } from "react-native-reanimated-table";
@@ -132,7 +132,7 @@ export default function TableDetailsJeu({ gameSelected }) {
     /* Submit settings */
   }
   const submitSettings = () => {
-    let settingsFinalList = `Game: ${gameSelected}\n\n`;
+    let settingsFinalList = `Game: ${gameSelected.slug}\n\n`;
 
     let settingsIndex = 0;
 
@@ -203,10 +203,10 @@ export default function TableDetailsJeu({ gameSelected }) {
     setDataLoaded({ isLoading: true });
 
     const handleFetch = async () => {
-      let firstCapitalLetter = gameSelected.substring(0, 1).toUpperCase();
+      let firstCapitalLetter = gameSelected.slug.substring(0, 1).toUpperCase();
       try {
         let response = await fetch(
-          `https://raw.githubusercontent.com/AbdourahmaneGadio/Optimized-settings-for-PC-Games/master/gamesData/${firstCapitalLetter}/${gameSelected}.json`
+          `https://raw.githubusercontent.com/AbdourahmaneGadio/Optimized-settings-for-PC-Games/master/gamesData/${firstCapitalLetter}/${gameSelected.slug}.json`
         );
 
         let data = await response.json();
@@ -232,37 +232,64 @@ export default function TableDetailsJeu({ gameSelected }) {
   }, []);
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       {/* Loading */}
       {dataLoaded.isLoading && <LoadingIcon />}
 
       {/* Table with results */}
-      {!dataLoaded.isLoading && dataLoaded.gameData != null && dataLoaded.gameData != "" && (
-        <View>
-          <Table
-            style={{ flexDirection: "row" }}
-            borderStyle={{ borderWidth: 1 }}
-          >
-            <TableWrapper style={{ width: 500 }}>
-              <TableWrapper style={{ flexDirection: "row" }}>
-                <Col
-                  data={dataLoaded.settingsName}
-                  style={styles.title}
-                  heightArr={[30, 30, 30, 30]}
-                  textStyle={styles.titleText}
-                />
+      {!dataLoaded.isLoading &&
+        dataLoaded.gameData != null &&
+        dataLoaded.gameData != "" && (
+          <View>
+            <ImageBackground
+              source={{ uri: gameSelected.background_image }}
+              style={{
+                alignItems: "center",
+                padding: 30,
+                justifyContent: "flex-start",
+              }}
+              resizeMode="cover"
+              blurRadius={5}
+              imageStyle={{ borderRadius: 30 }}
+            >
+                <View style={styles.imageContainer}>
+                  <ImageBackground
+                    source={{ uri: gameSelected.background_image }}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      flex: 1,
+                      resizeMode: "cover",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  ></ImageBackground>
+                </View>
+              <Table
+                style={{ flexDirection: "row" }}
+                borderStyle={{ borderWidth: 1 }}
+              >
+                <TableWrapper style={{ width: 500 }}>
+                  <TableWrapper style={{ flexDirection: "row" }}>
+                    <Col
+                      data={dataLoaded.settingsName}
+                      style={styles.title}
+                      heightArr={[30, 30, 30, 30]}
+                      textStyle={styles.titleText}
+                    />
 
-                <Col
-                  data={dataLoaded.settingsOptions}
-                  style={styles.title}
-                  heightArr={[30, 30, 30, 30]}
-                  textStyle={styles.titleText}
-                />
-              </TableWrapper>
-            </TableWrapper>
-          </Table>
-        </View>
-      )}
+                    <Col
+                      data={dataLoaded.settingsOptions}
+                      style={styles.title}
+                      heightArr={[30, 30, 30, 30]}
+                      textStyle={styles.titleText}
+                    />
+                  </TableWrapper>
+                </TableWrapper>
+              </Table>
+            </ImageBackground>
+          </View>
+        )}
 
       {/* If no settings are found */}
       {!dataLoaded.isLoading &&
@@ -322,6 +349,13 @@ export default function TableDetailsJeu({ gameSelected }) {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignContent: "center",
+    alignSelf: "center",
+    alignItems: "center",
+  },
   title: {
     flex: 2,
     backgroundColor: "#f6f8fa",
@@ -372,5 +406,20 @@ const styles = StyleSheet.create({
   },
   multiplesSettingsLines: {
     marginTop: 20,
+  },
+
+  imageContainer: {
+    width: 300,
+    height: 180,
+    borderRadius: 20,
+    overflow: "hidden",
+    marginBottom: 20,
+  },
+  imageCover: {
+    width: "100%",
+    height: "100%",
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

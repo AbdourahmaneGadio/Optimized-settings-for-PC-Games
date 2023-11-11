@@ -63,12 +63,9 @@ export default function App() {
     /* If we choose a game among the results */
   }
   const handleGameSelected = (e) => {
-    setGameSelected();
+    setGameSelected(e);
     setSearchActive(false);
     setGameResults([]);
-
-    let gameSelectedName = e;
-    setGameSelected(gameSelectedName);
   };
 
   {

@@ -11,7 +11,7 @@ export default function SingleGameZone({ actualGame, onPress}) {
 
   return (
     <View>
-      <Pressable onPress={() => onPress(actualGame.slug)} key={actualGame.id}>
+      <Pressable onPress={() => onPress(actualGame)} key={actualGame.id}>
         <ImageBackground
           source={{ uri: actualGame.background_image }}
           style={styles.container}
@@ -24,7 +24,6 @@ export default function SingleGameZone({ actualGame, onPress}) {
               <Text style={{ fontFamily: "Quicksand" }}>{actualGame.name}</Text>
             </View>
             <View>
-              <View style={styles.imageContainer}>
                 <View style={styles.imageContainer}>
                   <ImageBackground
                     source={{ uri: actualGame.background_image }}
@@ -40,7 +39,6 @@ export default function SingleGameZone({ actualGame, onPress}) {
                    
                   </ImageBackground>
                 </View>
-              </View>
             </View>
           </View>
         </ImageBackground>
