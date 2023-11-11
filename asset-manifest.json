@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/Optimized-settings-for-PC-Games/static/js/main.b88ee675.js",
+    "main.js": "/Optimized-settings-for-PC-Games/static/js/main.a8c516fa.js",
     "static/js/146.10e8d979.js": "/Optimized-settings-for-PC-Games/static/js/146.10e8d979.js",
     "static/media/Quicksand-VariableFont_wght.ttf": "/Optimized-settings-for-PC-Games/static/media/Quicksand-VariableFont_wght.cf52df73d8529b4815ed.ttf",
     "static/media/Entypo.ttf": "/Optimized-settings-for-PC-Games/static/media/Entypo.fc6169344c041cffcdae.ttf",
@@ -11,11 +11,11 @@
     "favicon-16.png": "/Optimized-settings-for-PC-Games/favicon-16.png",
     "manifest.json": "/Optimized-settings-for-PC-Games/manifest.json",
     "serve.json": "/Optimized-settings-for-PC-Games/serve.json",
-    "main.b88ee675.js.map": "/Optimized-settings-for-PC-Games/static/js/main.b88ee675.js.map",
+    "main.a8c516fa.js.map": "/Optimized-settings-for-PC-Games/static/js/main.a8c516fa.js.map",
     "146.10e8d979.js.map": "/Optimized-settings-for-PC-Games/static/js/146.10e8d979.js.map"
   },
   "entrypoints": [
     "static/js/146.10e8d979.js",
-    "static/js/main.b88ee675.js"
+    "static/js/main.a8c516fa.js"
   ]
 }
